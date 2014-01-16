@@ -1,0 +1,2428 @@
+   1               		.file	"sdlocker-tiny.cpp"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__ = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.stabs	"/home/nephiel/documents/arduino/sdlocker-tiny/",100,0,4,.Ltext0
+   9               		.stabs	"sdlocker-tiny.cpp",100,0,4,.Ltext0
+  10               		.text
+  11               	.Ltext0:
+  12               		.stabs	"gcc2_compiled.",60,0,0,0
+  13               		.stabs	"__builtin_va_list:t(0,1)=*(0,2)=(0,2)",128,0,0,0
+  14               		.stabs	"complex long double:t(0,3)=R3;8;0;",128,0,0,0
+  15               		.stabs	"complex double:t(0,4)=R3;8;0;",128,0,0,0
+  16               		.stabs	"complex float:t(0,5)=R3;8;0;",128,0,0,0
+  17               		.stabs	"complex int:t(0,6)=s4real:(0,7)=r(0,7);-32768;32767;,0,16;imag:(0,7),16,16;;",128,0,0,0
+  18               		.stabs	"long long unsigned int:t(0,8)=@s64;r(0,8);0;01777777777777777777777;",128,0,0,0
+  19               		.stabs	"long unsigned int:t(0,9)=@s32;r(0,9);0;037777777777;",128,0,0,0
+  20               		.stabs	"unsigned int:t(0,10)=r(0,10);0;0177777;",128,0,0,0
+  21               		.stabs	"unsigned char:t(0,11)=@s8;r(0,11);0;255;",128,0,0,0
+  22               		.stabs	"long long int:t(0,12)=@s64;r(0,12);01000000000000000000000;0777777777777777777777;",128,0,
+  23               		.stabs	"long int:t(0,13)=@s32;r(0,13);020000000000;017777777777;",128,0,0,0
+  24               		.stabs	"int:t(0,7)",128,0,0,0
+  25               		.stabs	"signed char:t(0,14)=@s8;r(0,14);-128;127;",128,0,0,0
+  26               		.stabs	"char:t(0,15)=r(0,15);0;127;",128,0,0,0
+  27               		.stabs	"signed:t(0,7)",128,0,0,0
+  28               		.stabs	"unsigned long:t(0,9)",128,0,0,0
+  29               		.stabs	"long long unsigned:t(0,8)",128,0,0,0
+  30               		.stabs	"short int:t(0,16)=r(0,16);-32768;32767;",128,0,0,0
+  31               		.stabs	"short unsigned int:t(0,17)=r(0,17);0;0177777;",128,0,0,0
+  32               		.stabs	"unsigned short:t(0,17)",128,0,0,0
+  33               		.stabs	"float:t(0,18)=r(0,7);4;0;",128,0,0,0
+  34               		.stabs	"double:t(0,19)=r(0,7);4;0;",128,0,0,0
+  35               		.stabs	"long double:t(0,20)=r(0,7);4;0;",128,0,0,0
+  36               		.stabs	"void:t(0,2)",128,0,0,0
+  37               		.stabs	"wchar_t:t(0,21)=r(0,21);-32768;32767;",128,0,0,0
+  38               		.stabs	"bool:t(0,22)=@s8;-16;",128,0,0,0
+  39               		.stabs	"__vtbl_ptr_type:t(0,23)=*(0,24)=f(0,7)",128,0,0,0
+  40               		.stabs	"int8_t:t(0,25)=(0,14)",128,0,121,0
+  41               		.stabs	"uint8_t:t(0,26)=(0,11)",128,0,122,0
+  42               		.stabs	"int16_t:t(0,27)=(0,7)",128,0,123,0
+  43               		.stabs	"uint16_t:t(0,28)=(0,10)",128,0,124,0
+  44               		.stabs	"int32_t:t(0,29)=(0,13)",128,0,125,0
+  45               		.stabs	"uint32_t:t(0,30)=(0,9)",128,0,126,0
+  46               		.stabs	"int64_t:t(0,31)=(0,12)",128,0,128,0
+  47               		.stabs	"uint64_t:t(0,32)=(0,8)",128,0,129,0
+  48               		.stabs	"intptr_t:t(0,33)=(0,27)",128,0,142,0
+  49               		.stabs	"uintptr_t:t(0,34)=(0,28)",128,0,147,0
+  50               		.stabs	"int_least8_t:t(0,35)=(0,25)",128,0,159,0
+  51               		.stabs	"uint_least8_t:t(0,36)=(0,26)",128,0,164,0
+  52               		.stabs	"int_least16_t:t(0,37)=(0,27)",128,0,169,0
+  53               		.stabs	"uint_least16_t:t(0,38)=(0,28)",128,0,174,0
+  54               		.stabs	"int_least32_t:t(0,39)=(0,29)",128,0,179,0
+  55               		.stabs	"uint_least32_t:t(0,40)=(0,30)",128,0,184,0
+  56               		.stabs	"int_least64_t:t(0,41)=(0,31)",128,0,192,0
+  57               		.stabs	"uint_least64_t:t(0,42)=(0,32)",128,0,199,0
+  58               		.stabs	"int_fast8_t:t(0,43)=(0,25)",128,0,213,0
+  59               		.stabs	"uint_fast8_t:t(0,44)=(0,26)",128,0,218,0
+  60               		.stabs	"int_fast16_t:t(0,45)=(0,27)",128,0,223,0
+  61               		.stabs	"uint_fast16_t:t(0,46)=(0,28)",128,0,228,0
+  62               		.stabs	"int_fast32_t:t(0,47)=(0,29)",128,0,233,0
+  63               		.stabs	"uint_fast32_t:t(0,48)=(0,30)",128,0,238,0
+  64               		.stabs	"int_fast64_t:t(0,49)=(0,31)",128,0,246,0
+  65               		.stabs	"uint_fast64_t:t(0,50)=(0,32)",128,0,253,0
+  66               		.stabs	"intmax_t:t(0,51)=(0,31)",128,0,273,0
+  67               		.stabs	"uintmax_t:t(0,52)=(0,32)",128,0,278,0
+  68               		.stabs	"int_farptr_t:t(0,53)=(0,29)",128,0,77,0
+  69               		.stabs	"uint_farptr_t:t(0,54)=(0,30)",128,0,81,0
+  70               		.stabs	"__gnuc_va_list:t(0,55)=(0,1)",128,0,40,0
+  71               		.stabs	"va_list:t(0,56)=(0,55)",128,0,102,0
+  72               		.stabs	"size_t:t(0,57)=(0,10)",128,0,211,0
+  73               		.stabs	"__file:Tt(0,58)=s14buf:(0,59)=*(0,15),0,16;unget:(0,11),16,8;flags:(0,26),24,8;size:(0,7),
+  74               		.stabs	"._0:Tt(0,65)=s4quot:(0,7),0,16;rem:(0,7),16,16;;",128,0,68,0
+  75               		.stabs	"div_t:t(0,65)",128,0,71,0
+  76               		.stabs	"._1:Tt(0,66)=s8quot:(0,13),0,32;rem:(0,13),32,32;;",128,0,74,0
+  77               		.stabs	"ldiv_t:t(0,66)",128,0,77,0
+  78               		.stabs	"__compar_fn_t:t(0,67)=(0,68)=*(0,69)=f(0,7)",128,0,80,0
+  79               		.stabs	"._2:Tt(0,70)=s3low:(0,11),0,8;high:(0,11),8,8;extended:(0,11),16,8;;",128,0,240,0
+  80               		.stabs	"__fuse_t:t(0,70)",128,0,244,0
+  81               		.stabs	"prog_void:t(0,71)=(0,72)=(0,72)",128,0,217,0
+  82               		.stabs	"prog_char:t(0,73)=(0,74)=@s8;r(0,74);-128;127;",128,0,218,0
+  83               		.stabs	"prog_uchar:t(0,75)=(0,76)=@s8;r(0,76);0;255;",128,0,219,0
+  84               		.stabs	"prog_int8_t:t(0,77)=(0,78)=(0,14)",128,0,221,0
+  85               		.stabs	"prog_uint8_t:t(0,79)=(0,80)=(0,11)",128,0,222,0
+  86               		.stabs	"prog_int16_t:t(0,81)=(0,82)=(0,7)",128,0,223,0
+  87               		.stabs	"prog_uint16_t:t(0,83)=(0,84)=(0,10)",128,0,224,0
+  88               		.stabs	"prog_int32_t:t(0,85)=(0,86)=(0,13)",128,0,225,0
+  89               		.stabs	"prog_uint32_t:t(0,87)=(0,88)=(0,9)",128,0,226,0
+  90               		.stabs	"prog_int64_t:t(0,89)=(0,90)=(0,12)",128,0,228,0
+  91               		.stabs	"prog_uint64_t:t(0,91)=(0,92)=(0,8)",128,0,229,0
+  92               		.stabs	"_ZL14ReadSwitchOncev:f(0,26)",36,0,291,_ZL14ReadSwitchOncev
+  93               		.type	_ZL14ReadSwitchOncev, @function
+  94               	_ZL14ReadSwitchOncev:
+  95               		.stabd	46,0,0
+   1:sdlocker-tiny.cpp **** /*
+   2:sdlocker-tiny.cpp ****  * sdlocker-tiny      Lock/unlock an SD card, uses ATTINY85
+   3:sdlocker-tiny.cpp ****  *                    By Nephiel
+   4:sdlocker-tiny.cpp ****  *
+   5:sdlocker-tiny.cpp ****  * Based on sdlocker by karllunt (http://www.seanet.com/~karllunt/sdlocker.html)
+   6:sdlocker-tiny.cpp ****  *
+   7:sdlocker-tiny.cpp ****  *
+   8:sdlocker-tiny.cpp ****  *              ATMEL ATTINY85
+   9:sdlocker-tiny.cpp ****  *                   +-v-+
+  10:sdlocker-tiny.cpp ****  *      nc     PB5  1|   |8  Vcc --- +3.3V
+  11:sdlocker-tiny.cpp ****  *      CS <-- PB3  2|   |7  PB2 --> SCK
+  12:sdlocker-tiny.cpp ****  *   LEDSW <-> PB4  3|   |6  PB1 <-- MISO
+  13:sdlocker-tiny.cpp ****  *     GND --- GND  4|   |5  PB0 --> MOSI
+  14:sdlocker-tiny.cpp ****  *                   +---+
+  15:sdlocker-tiny.cpp ****  *
+  16:sdlocker-tiny.cpp ****  *
+  17:sdlocker-tiny.cpp ****  *                LEDSW--+
+  18:sdlocker-tiny.cpp ****  *                       |
+  19:sdlocker-tiny.cpp ****  * +3.3V    R1     LED   |    R2    Switch
+  20:sdlocker-tiny.cpp ****  *  Vcc----\/\/\---[>|---+---\/\/\---[*]----GND
+  21:sdlocker-tiny.cpp ****  *          300               300
+  22:sdlocker-tiny.cpp ****  *
+  23:sdlocker-tiny.cpp ****  *
+  24:sdlocker-tiny.cpp ****  *                SD CARD
+  25:sdlocker-tiny.cpp ****  * _______
+  26:sdlocker-tiny.cpp ****  * [ 9 ]  \ rsv      nc
+  27:sdlocker-tiny.cpp ****  *   [ 1 ] |  CS <-- CS
+  28:sdlocker-tiny.cpp ****  *   [ 2 ] |  DI <-- MOSI
+  29:sdlocker-tiny.cpp ****  *   [ 3 ] | GND --- GND
+  30:sdlocker-tiny.cpp ****  *   [ 4 ] | Vcc --- +3.3V
+  31:sdlocker-tiny.cpp ****  *   [ 5 ] | CLK <-- SCK
+  32:sdlocker-tiny.cpp ****  *   [ 6 ] | GND --- GND
+  33:sdlocker-tiny.cpp ****  *   [ 7 ] |  DO --> MISO
+  34:sdlocker-tiny.cpp ****  *   [ 8 ] | rsv     nc
+  35:sdlocker-tiny.cpp ****  * --------+
+  36:sdlocker-tiny.cpp ****  *
+  37:sdlocker-tiny.cpp ****  *
+  38:sdlocker-tiny.cpp ****  *            ADDITIONAL NOTES
+  39:sdlocker-tiny.cpp ****  *
+  40:sdlocker-tiny.cpp ****  *  You might need to change the fuses on the ATTINY85:
+  41:sdlocker-tiny.cpp ****  *  lfuse=E2,  hfuse=DF,  efuse=FF or 01
+  42:sdlocker-tiny.cpp ****  *
+  43:sdlocker-tiny.cpp ****  *  Use the built-in card-detect switch on the SD card socket
+  44:sdlocker-tiny.cpp ****  *  to cut the power to the circuit when the card is removed.
+  45:sdlocker-tiny.cpp ****  *
+  46:sdlocker-tiny.cpp ****  *  Use a LM3940 to obtain 3.3V from a 5V source such as USB.
+  47:sdlocker-tiny.cpp ****  *
+  48:sdlocker-tiny.cpp ****  */
+  49:sdlocker-tiny.cpp **** 
+  50:sdlocker-tiny.cpp **** 
+  51:sdlocker-tiny.cpp **** 
+  52:sdlocker-tiny.cpp **** #include <stdint.h>
+  53:sdlocker-tiny.cpp **** #include <stdio.h>
+  54:sdlocker-tiny.cpp **** #include <stdlib.h>
+  55:sdlocker-tiny.cpp **** #include <string.h>
+  56:sdlocker-tiny.cpp **** #include <avr/io.h>
+  57:sdlocker-tiny.cpp **** #include <avr/pgmspace.h>
+  58:sdlocker-tiny.cpp **** #include <avr/interrupt.h>
+  59:sdlocker-tiny.cpp **** #include <inttypes.h>
+  60:sdlocker-tiny.cpp **** #include <ctype.h>
+  61:sdlocker-tiny.cpp **** #include <util/delay.h>
+  62:sdlocker-tiny.cpp **** 
+  63:sdlocker-tiny.cpp **** #ifndef FALSE
+  64:sdlocker-tiny.cpp **** #define FALSE       0
+  65:sdlocker-tiny.cpp **** #define TRUE        !FALSE
+  66:sdlocker-tiny.cpp **** #endif
+  67:sdlocker-tiny.cpp **** 
+  68:sdlocker-tiny.cpp **** 
+  69:sdlocker-tiny.cpp **** /*
+  70:sdlocker-tiny.cpp ****  * Define commands for the SD card
+  71:sdlocker-tiny.cpp ****  */
+  72:sdlocker-tiny.cpp **** #define SD_GO_IDLE          (0x40 + 0)  // CMD0 - go to idle state
+  73:sdlocker-tiny.cpp **** #define SD_INIT             (0x40 + 1)  // CMD1 - start initialization
+  74:sdlocker-tiny.cpp **** #define SD_SEND_IF_COND     (0x40 + 8)  // CMD8 - send interface (conditional), works for SDHC only
+  75:sdlocker-tiny.cpp **** #define SD_SEND_CSD         (0x40 + 9)  // CMD9 - send CSD block (16 bytes)
+  76:sdlocker-tiny.cpp **** #define SD_SEND_CID         (0x40 + 10) // CMD10 - send CID block (16 bytes)
+  77:sdlocker-tiny.cpp **** #define SD_SEND_STATUS      (0x40 + 13) // CMD13 - send card status
+  78:sdlocker-tiny.cpp **** #define SD_SET_BLK_LEN      (0x40 + 16) // CMD16 - set length of block in bytes
+  79:sdlocker-tiny.cpp **** #define SD_READ_BLK         (0x40 + 17) // read single block
+  80:sdlocker-tiny.cpp **** #define SD_LOCK_UNLOCK      (0x40 + 42) // CMD42 - lock/unlock card
+  81:sdlocker-tiny.cpp **** #define CMD55               (0x40 + 55) // multi-byte preface command
+  82:sdlocker-tiny.cpp **** #define SD_READ_OCR         (0x40 + 58) // read OCR
+  83:sdlocker-tiny.cpp **** #define SD_ADV_INIT         (0xc0 + 41) // ACMD41, for SDHC cards - advanced start initialization
+  84:sdlocker-tiny.cpp **** #define SD_PROGRAM_CSD      (0x40 + 27) // CMD27 - get CSD block (15 bytes data + CRC)
+  85:sdlocker-tiny.cpp **** 
+  86:sdlocker-tiny.cpp **** 
+  87:sdlocker-tiny.cpp **** /*
+  88:sdlocker-tiny.cpp ****  * Define the lock bit mask within byte 14 of the CSD
+  89:sdlocker-tiny.cpp ****  */
+  90:sdlocker-tiny.cpp **** #define LOCK_BIT_MASK       0x10 // mask for the lock bit
+  91:sdlocker-tiny.cpp **** 
+  92:sdlocker-tiny.cpp **** 
+  93:sdlocker-tiny.cpp **** /*
+  94:sdlocker-tiny.cpp ****  * Define error codes that can be returned by local functions
+  95:sdlocker-tiny.cpp ****  */
+  96:sdlocker-tiny.cpp **** #define SDCARD_OK           0   // success
+  97:sdlocker-tiny.cpp **** #define SDCARD_NOT_DETECTED 1   // unable to detect SD card
+  98:sdlocker-tiny.cpp **** #define SDCARD_TIMEOUT      2   // last operation timed out
+  99:sdlocker-tiny.cpp **** #define SDCARD_RWFAIL       3   // read/write command failed
+ 100:sdlocker-tiny.cpp **** 
+ 101:sdlocker-tiny.cpp **** 
+ 102:sdlocker-tiny.cpp **** /*
+ 103:sdlocker-tiny.cpp ****  * Define card types that could be reported by the SD card during probe
+ 104:sdlocker-tiny.cpp ****  */
+ 105:sdlocker-tiny.cpp **** #define SDTYPE_UNKNOWN      0   // card type not determined
+ 106:sdlocker-tiny.cpp **** #define SDTYPE_SD           1   // SD v1 (1 MB to 2 GB)
+ 107:sdlocker-tiny.cpp **** #define SDTYPE_SDHC         2   // SDHC (4 GB to 32 GB)
+ 108:sdlocker-tiny.cpp **** 
+ 109:sdlocker-tiny.cpp **** 
+ 110:sdlocker-tiny.cpp **** /*
+ 111:sdlocker-tiny.cpp ****  * Define the port and DDR used by the SPI.
+ 112:sdlocker-tiny.cpp ****  */
+ 113:sdlocker-tiny.cpp **** #define SPI_PORT    PORTB
+ 114:sdlocker-tiny.cpp **** #define SPI_DDR     DDRB
+ 115:sdlocker-tiny.cpp **** #define SPI_PIN     PINB
+ 116:sdlocker-tiny.cpp **** 
+ 117:sdlocker-tiny.cpp **** 
+ 118:sdlocker-tiny.cpp **** /*
+ 119:sdlocker-tiny.cpp ****  * Define bits used by the SPI port.
+ 120:sdlocker-tiny.cpp ****  */
+ 121:sdlocker-tiny.cpp **** #define MOSI_BIT    0
+ 122:sdlocker-tiny.cpp **** #define MISO_BIT    1
+ 123:sdlocker-tiny.cpp **** #define SCK_BIT     2
+ 124:sdlocker-tiny.cpp **** #define CS_BIT      3
+ 125:sdlocker-tiny.cpp **** 
+ 126:sdlocker-tiny.cpp **** 
+ 127:sdlocker-tiny.cpp **** /*
+ 128:sdlocker-tiny.cpp ****  * Define the port, DDR, and bit used for the LED and the switch.
+ 129:sdlocker-tiny.cpp ****  * The ATTINY85 doesn't have enough I/O pins so we need to share one.
+ 130:sdlocker-tiny.cpp ****  * Note the LED output is active low.
+ 131:sdlocker-tiny.cpp ****  */
+ 132:sdlocker-tiny.cpp **** #define LEDSW_PORT      PORTB
+ 133:sdlocker-tiny.cpp **** #define LEDSW_DDR       DDRB
+ 134:sdlocker-tiny.cpp **** #define LEDSW_PIN       PINB
+ 135:sdlocker-tiny.cpp **** #define LEDSW_BIT       4
+ 136:sdlocker-tiny.cpp **** #define LEDSW_MASK      (1<<LEDSW_BIT)
+ 137:sdlocker-tiny.cpp **** 
+ 138:sdlocker-tiny.cpp **** #define LEDSW_AS_LED    (LEDSW_DDR|=LEDSW_MASK)     // make the line an output
+ 139:sdlocker-tiny.cpp **** #define LEDSW_AS_SW     (LEDSW_DDR&=~LEDSW_MASK)    // make the line an input
+ 140:sdlocker-tiny.cpp **** 
+ 141:sdlocker-tiny.cpp **** #define TURN_LED_ON     (LEDSW_PORT&=~LEDSW_MASK)   // set line low, led on
+ 142:sdlocker-tiny.cpp **** #define TURN_LED_OFF    (LEDSW_PORT|=LEDSW_MASK)    // set line high, led off
+ 143:sdlocker-tiny.cpp **** #define SW_PULLUP       TURN_LED_OFF                // set line high, enable pullup
+ 144:sdlocker-tiny.cpp **** #define SW_GET_STATE    !(LEDSW_PIN & LEDSW_MASK)   // get switch state (1 = pressed)
+ 145:sdlocker-tiny.cpp **** 
+ 146:sdlocker-tiny.cpp **** 
+ 147:sdlocker-tiny.cpp **** /*
+ 148:sdlocker-tiny.cpp ****  * Define switch states
+ 149:sdlocker-tiny.cpp ****  */
+ 150:sdlocker-tiny.cpp **** #define SW_PRESSED      1
+ 151:sdlocker-tiny.cpp **** #define SW_RELEASED     0
+ 152:sdlocker-tiny.cpp **** 
+ 153:sdlocker-tiny.cpp **** 
+ 154:sdlocker-tiny.cpp **** /*
+ 155:sdlocker-tiny.cpp ****  * Define LED blinking patterns.
+ 156:sdlocker-tiny.cpp ****  */
+ 157:sdlocker-tiny.cpp **** #define PATTERN_LOCKED        0x80000000      // Led steady ON, card is locked (write-protected)
+ 158:sdlocker-tiny.cpp **** #define PATTERN_UNLOCKED      0x00000000      // Led steady OFF, card is unlocked (write allowed)
+ 159:sdlocker-tiny.cpp **** #define PATTERN_BOOTING       0x844b0000      // Device just powered up (or card just inserted, if 
+ 160:sdlocker-tiny.cpp **** #define PATTERN_LOADING       0xa0000000      // Device trying to read the card. Fast blink 1
+ 161:sdlocker-tiny.cpp **** #define PATTERN_READING       0xa5000000      // Device trying to read registers from a card. Fast 
+ 162:sdlocker-tiny.cpp **** #define PATTERN_FAILED        0x00030003      // Device could not change card lock state. Slow blin
+ 163:sdlocker-tiny.cpp **** #define PATTERN_WERROR        0x000f000f      // Device could not write registers to a card. Slow b
+ 164:sdlocker-tiny.cpp **** 
+ 165:sdlocker-tiny.cpp **** 
+ 166:sdlocker-tiny.cpp **** /*
+ 167:sdlocker-tiny.cpp ****  * Define the CRC7 polynomial
+ 168:sdlocker-tiny.cpp ****  */
+ 169:sdlocker-tiny.cpp **** #define CRC7_POLY       0x89    // polynomial used for CSD CRCs
+ 170:sdlocker-tiny.cpp **** 
+ 171:sdlocker-tiny.cpp **** 
+ 172:sdlocker-tiny.cpp **** 
+ 173:sdlocker-tiny.cpp **** /*
+ 174:sdlocker-tiny.cpp ****  * Local variables
+ 175:sdlocker-tiny.cpp ****  */
+ 176:sdlocker-tiny.cpp **** uint32_t    LEDPattern; // Blinking patterns
+ 177:sdlocker-tiny.cpp **** uint8_t     sdtype;     // Flag for SD card type
+ 178:sdlocker-tiny.cpp **** uint8_t     csd[16];    // Card registers
+ 179:sdlocker-tiny.cpp **** uint8_t     cid[16];
+ 180:sdlocker-tiny.cpp **** uint8_t     crctable[256];
+ 181:sdlocker-tiny.cpp **** 
+ 182:sdlocker-tiny.cpp **** 
+ 183:sdlocker-tiny.cpp **** /*
+ 184:sdlocker-tiny.cpp ****  * Local functions
+ 185:sdlocker-tiny.cpp ****  */
+ 186:sdlocker-tiny.cpp **** static void     Select(void);
+ 187:sdlocker-tiny.cpp **** static void     Deselect(void);
+ 188:sdlocker-tiny.cpp **** static uint8_t  Xchg(uint8_t c);
+ 189:sdlocker-tiny.cpp **** static uint8_t  SDInit(void);
+ 190:sdlocker-tiny.cpp **** static uint8_t  ReadCSD(void);
+ 191:sdlocker-tiny.cpp **** static uint8_t  WriteCSD(void);
+ 192:sdlocker-tiny.cpp **** 
+ 193:sdlocker-tiny.cpp **** static uint8_t  SD_send_command(uint8_t command, uint32_t arg);
+ 194:sdlocker-tiny.cpp **** static uint8_t  SD_wait_for_data(void);
+ 195:sdlocker-tiny.cpp **** 
+ 196:sdlocker-tiny.cpp **** static void     GenerateCRCTable(void);
+ 197:sdlocker-tiny.cpp **** static uint8_t  AddByteToCRC(uint8_t crc, uint8_t b);
+ 198:sdlocker-tiny.cpp **** 
+ 199:sdlocker-tiny.cpp **** static void     BlinkLED(uint32_t pattern);
+ 200:sdlocker-tiny.cpp **** static uint8_t  ButtonIs(uint8_t state);
+ 201:sdlocker-tiny.cpp **** static uint8_t  ReadSwitchOnce(void);
+ 202:sdlocker-tiny.cpp **** static uint8_t  CardIsLocked(void);
+ 203:sdlocker-tiny.cpp **** static void     ReadState(void);
+ 204:sdlocker-tiny.cpp **** static void     ShowState(void);
+ 205:sdlocker-tiny.cpp **** static void     ToggleState(void);
+ 206:sdlocker-tiny.cpp **** 
+ 207:sdlocker-tiny.cpp **** 
+ 208:sdlocker-tiny.cpp **** 
+ 209:sdlocker-tiny.cpp **** int main(void)
+ 210:sdlocker-tiny.cpp **** {
+ 211:sdlocker-tiny.cpp ****     uint8_t prevState; // Last known state of the card (locked or unlocked)
+ 212:sdlocker-tiny.cpp **** 
+ 213:sdlocker-tiny.cpp ****     // Set up the hardware lines and ports associated with accessing the SD card.
+ 214:sdlocker-tiny.cpp ****     SPI_PORT |= (1<<MOSI_BIT) | (1<<SCK_BIT);                   // drive outputs to the SPI port
+ 215:sdlocker-tiny.cpp ****     SPI_DDR  |= (1<<CS_BIT) | (1<<MOSI_BIT) | (1<<SCK_BIT);     // make the proper lines outputs
+ 216:sdlocker-tiny.cpp ****     SPI_PORT |= (1<<MISO_BIT);                                  // turn on pull-up for input
+ 217:sdlocker-tiny.cpp ****     Deselect();                 // Start with SD card disabled
+ 218:sdlocker-tiny.cpp **** 
+ 219:sdlocker-tiny.cpp ****     GenerateCRCTable();         // Needed for some SD commands
+ 220:sdlocker-tiny.cpp **** 
+ 221:sdlocker-tiny.cpp ****     LEDSW_AS_LED;               // Set shared LED/switch pin as output (LED)
+ 222:sdlocker-tiny.cpp ****     BlinkLED(PATTERN_BOOTING);  // Test LED on power on
+ 223:sdlocker-tiny.cpp ****     ReadState();                // Read the card for the first time
+ 224:sdlocker-tiny.cpp **** 
+ 225:sdlocker-tiny.cpp ****     while (1)
+ 226:sdlocker-tiny.cpp ****     {
+ 227:sdlocker-tiny.cpp ****         ShowState();                // Display the current state
+ 228:sdlocker-tiny.cpp **** 
+ 229:sdlocker-tiny.cpp ****         if (ButtonIs(SW_PRESSED))   // If the user presses the button...
+ 230:sdlocker-tiny.cpp ****         {
+ 231:sdlocker-tiny.cpp ****             prevState = CardIsLocked();     // remember the current state
+ 232:sdlocker-tiny.cpp ****             ToggleState();                  // then, attempt to change it
+ 233:sdlocker-tiny.cpp ****             ReadState();                    // and read again to verify the change
+ 234:sdlocker-tiny.cpp **** 
+ 235:sdlocker-tiny.cpp ****             if (CardIsLocked() == prevState)    // if state did not change as expected
+ 236:sdlocker-tiny.cpp ****             {
+ 237:sdlocker-tiny.cpp ****                 BlinkLED(PATTERN_FAILED);   // blink error a few times
+ 238:sdlocker-tiny.cpp ****                 BlinkLED(PATTERN_FAILED);
+ 239:sdlocker-tiny.cpp ****                 BlinkLED(PATTERN_FAILED);
+ 240:sdlocker-tiny.cpp ****             }
+ 241:sdlocker-tiny.cpp **** 
+ 242:sdlocker-tiny.cpp ****             ShowState();                    // Display the updated state, and...
+ 243:sdlocker-tiny.cpp **** 
+ 244:sdlocker-tiny.cpp ****             while (!ButtonIs(SW_RELEASED))  // ...wait until the button is released
+ 245:sdlocker-tiny.cpp ****             // note (ButtonIs(SW_PRESSED)) wouldn't do here, we want to debounce the releasing
+ 246:sdlocker-tiny.cpp ****             {
+ 247:sdlocker-tiny.cpp ****                  _delay_ms(25);
+ 248:sdlocker-tiny.cpp ****             }
+ 249:sdlocker-tiny.cpp ****         }
+ 250:sdlocker-tiny.cpp ****     } // end main while (1) loop
+ 251:sdlocker-tiny.cpp **** 
+ 252:sdlocker-tiny.cpp ****     return 0; // should never be reached
+ 253:sdlocker-tiny.cpp **** }
+ 254:sdlocker-tiny.cpp **** 
+ 255:sdlocker-tiny.cpp **** 
+ 256:sdlocker-tiny.cpp **** 
+ 257:sdlocker-tiny.cpp **** /*
+ 258:sdlocker-tiny.cpp ****  * ButtonIs(state)
+ 259:sdlocker-tiny.cpp ****  * Checks if the button matches the specified state (pressed or not).
+ 260:sdlocker-tiny.cpp ****  * Handles debouncing. Returns 1 on match, 0 otherwise.
+ 261:sdlocker-tiny.cpp ****  */
+ 262:sdlocker-tiny.cpp **** static uint8_t ButtonIs(uint8_t state)
+ 263:sdlocker-tiny.cpp **** {
+ 264:sdlocker-tiny.cpp ****     uint8_t match = 0;              // Assume state doesn't match
+ 265:sdlocker-tiny.cpp ****     uint8_t i;
+ 266:sdlocker-tiny.cpp **** 
+ 267:sdlocker-tiny.cpp ****     if (ReadSwitchOnce() == state)  // if switch state seems to match
+ 268:sdlocker-tiny.cpp ****     {
+ 269:sdlocker-tiny.cpp ****         match = 1;
+ 270:sdlocker-tiny.cpp ****         for (i=0; i<5; i++)         // debounce check every 100ms, 5 times
+ 271:sdlocker-tiny.cpp ****         {
+ 272:sdlocker-tiny.cpp ****             _delay_ms(100);
+ 273:sdlocker-tiny.cpp ****             if (ReadSwitchOnce() != state)  // if state doesn't match now
+ 274:sdlocker-tiny.cpp ****             {
+ 275:sdlocker-tiny.cpp ****                 match = 0;          // terminate debounce check
+ 276:sdlocker-tiny.cpp ****                 break;
+ 277:sdlocker-tiny.cpp ****             }
+ 278:sdlocker-tiny.cpp ****         }
+ 279:sdlocker-tiny.cpp ****     }
+ 280:sdlocker-tiny.cpp ****     return match;
+ 281:sdlocker-tiny.cpp **** }
+ 282:sdlocker-tiny.cpp **** 
+ 283:sdlocker-tiny.cpp **** 
+ 284:sdlocker-tiny.cpp **** 
+ 285:sdlocker-tiny.cpp **** /*
+ 286:sdlocker-tiny.cpp ****  * ReadSwitchOnce()
+ 287:sdlocker-tiny.cpp ****  * Checks if the switch is closed. NO debouncing.
+ 288:sdlocker-tiny.cpp ****  * Also handles I/O switching for the shared LEDSW pin, so that line
+ 289:sdlocker-tiny.cpp ****  * is always set as an output (LED) outside of this function.
+ 290:sdlocker-tiny.cpp ****  */
+ 291:sdlocker-tiny.cpp **** static uint8_t ReadSwitchOnce(void)
+ 292:sdlocker-tiny.cpp **** {
+  96               		.stabn	68,0,292,.LM0-.LFBB1
+  97               	.LM0:
+  98               	.LFBB1:
+  99               	/* prologue: function */
+ 100               	/* frame size = 0 */
+ 101               	/* stack size = 0 */
+ 102               	.L__stack_usage = 0
+ 103               	.LBB44:
+ 293:sdlocker-tiny.cpp ****     uint8_t switchState;
+ 294:sdlocker-tiny.cpp **** 
+ 295:sdlocker-tiny.cpp ****     TURN_LED_OFF;   // Set line high to turn off LED
+ 104               		.stabn	68,0,295,.LM1-.LFBB1
+ 105               	.LM1:
+ 106 0000 C49A      		sbi 56-32,4
+ 296:sdlocker-tiny.cpp ****     LEDSW_AS_SW;    // Set shared pin as input (switch)
+ 107               		.stabn	68,0,296,.LM2-.LFBB1
+ 108               	.LM2:
+ 109 0002 BC98      		cbi 55-32,4
+ 297:sdlocker-tiny.cpp ****     SW_PULLUP;      // Enable internal pull-up by setting line high again
+ 110               		.stabn	68,0,297,.LM3-.LFBB1
+ 111               	.LM3:
+ 112 0004 C49A      		sbi 56-32,4
+ 298:sdlocker-tiny.cpp **** 
+ 299:sdlocker-tiny.cpp ****     switchState = SW_GET_STATE;
+ 113               		.stabn	68,0,299,.LM4-.LFBB1
+ 114               	.LM4:
+ 115 0006 81E0      		ldi r24,lo8(1)
+ 116 0008 B499      		sbic 54-32,4
+ 117 000a 80E0      		ldi r24,lo8(0)
+ 118               	.L2:
+ 300:sdlocker-tiny.cpp **** 
+ 301:sdlocker-tiny.cpp ****     LEDSW_AS_LED;     // Set shared pin as output (LED) again
+ 119               		.stabn	68,0,301,.LM5-.LFBB1
+ 120               	.LM5:
+ 121 000c BC9A      		sbi 55-32,4
+ 122               	.LBB45:
+ 123               	.LBB46:
+ 302:sdlocker-tiny.cpp ****     if (CardIsLocked())    // and if needed,
+ 303:sdlocker-tiny.cpp ****     {
+ 304:sdlocker-tiny.cpp ****         TURN_LED_ON;  // turn LED back on before returning
+ 305:sdlocker-tiny.cpp ****     }
+ 306:sdlocker-tiny.cpp **** 
+ 307:sdlocker-tiny.cpp ****     return switchState;
+ 308:sdlocker-tiny.cpp **** }
+ 309:sdlocker-tiny.cpp **** 
+ 310:sdlocker-tiny.cpp **** 
+ 311:sdlocker-tiny.cpp **** 
+ 312:sdlocker-tiny.cpp **** /*
+ 313:sdlocker-tiny.cpp ****  * BlinkLED(pattern)
+ 314:sdlocker-tiny.cpp ****  * Makes the LED blink in the specified pattern.
+ 315:sdlocker-tiny.cpp ****  */
+ 316:sdlocker-tiny.cpp **** void BlinkLED(uint32_t pattern)
+ 317:sdlocker-tiny.cpp **** {
+ 318:sdlocker-tiny.cpp ****     uint8_t i;
+ 319:sdlocker-tiny.cpp ****     for (i=0; i<32; i++)
+ 320:sdlocker-tiny.cpp ****     {
+ 321:sdlocker-tiny.cpp ****         if (pattern & 0x80000000)
+ 322:sdlocker-tiny.cpp ****         {
+ 323:sdlocker-tiny.cpp ****             TURN_LED_ON;
+ 324:sdlocker-tiny.cpp ****         }
+ 325:sdlocker-tiny.cpp ****         else
+ 326:sdlocker-tiny.cpp ****         {
+ 327:sdlocker-tiny.cpp ****             TURN_LED_OFF;
+ 328:sdlocker-tiny.cpp ****         }
+ 329:sdlocker-tiny.cpp ****         _delay_ms(35);
+ 330:sdlocker-tiny.cpp ****         pattern = pattern << 1;
+ 331:sdlocker-tiny.cpp ****         if (pattern == 0)
+ 332:sdlocker-tiny.cpp ****         {
+ 333:sdlocker-tiny.cpp ****             break; // leave blink loop if no more ON bits
+ 334:sdlocker-tiny.cpp ****         }
+ 335:sdlocker-tiny.cpp ****     }
+ 336:sdlocker-tiny.cpp **** }
+ 337:sdlocker-tiny.cpp **** 
+ 338:sdlocker-tiny.cpp **** 
+ 339:sdlocker-tiny.cpp **** 
+ 340:sdlocker-tiny.cpp **** /*
+ 341:sdlocker-tiny.cpp ****  * ReadState()
+ 342:sdlocker-tiny.cpp ****  * Read the locked/unlocked state from the card.
+ 343:sdlocker-tiny.cpp ****  * This function won't return until the state has been read.
+ 344:sdlocker-tiny.cpp ****  */
+ 345:sdlocker-tiny.cpp **** static void ReadState(void)
+ 346:sdlocker-tiny.cpp **** {
+ 347:sdlocker-tiny.cpp ****     uint8_t r;
+ 348:sdlocker-tiny.cpp **** 
+ 349:sdlocker-tiny.cpp ****     // In all cases, try first to initialize the card.
+ 350:sdlocker-tiny.cpp ****     r = SDInit();
+ 351:sdlocker-tiny.cpp ****     while (r != SDCARD_OK)
+ 352:sdlocker-tiny.cpp ****     {
+ 353:sdlocker-tiny.cpp ****         BlinkLED(PATTERN_LOADING);
+ 354:sdlocker-tiny.cpp ****         r = SDInit(); // keep trying
+ 355:sdlocker-tiny.cpp ****     }
+ 356:sdlocker-tiny.cpp **** 
+ 357:sdlocker-tiny.cpp ****     // Card initialized, now read the CSD
+ 358:sdlocker-tiny.cpp ****     r = ReadCSD();
+ 359:sdlocker-tiny.cpp ****     while (r != SDCARD_OK)
+ 360:sdlocker-tiny.cpp ****     {
+ 361:sdlocker-tiny.cpp ****         BlinkLED(PATTERN_READING);
+ 362:sdlocker-tiny.cpp ****         r = ReadCSD(); // keep trying
+ 363:sdlocker-tiny.cpp ****     }
+ 364:sdlocker-tiny.cpp **** }
+ 365:sdlocker-tiny.cpp **** 
+ 366:sdlocker-tiny.cpp **** 
+ 367:sdlocker-tiny.cpp **** 
+ 368:sdlocker-tiny.cpp **** /*
+ 369:sdlocker-tiny.cpp ****  * ShowState()
+ 370:sdlocker-tiny.cpp ****  * Shows the locked/unlocked state of the card, using the LED
+ 371:sdlocker-tiny.cpp ****  * LED steadily on  = card is locked (write-protected)
+ 372:sdlocker-tiny.cpp ****  * LED off          = card is unlocked
+ 373:sdlocker-tiny.cpp ****  */
+ 374:sdlocker-tiny.cpp **** static void ShowState(void)
+ 375:sdlocker-tiny.cpp **** {
+ 376:sdlocker-tiny.cpp ****     if (CardIsLocked())
+ 377:sdlocker-tiny.cpp ****     {
+ 378:sdlocker-tiny.cpp ****         BlinkLED(PATTERN_LOCKED);
+ 379:sdlocker-tiny.cpp ****     }
+ 380:sdlocker-tiny.cpp ****     else
+ 381:sdlocker-tiny.cpp ****     {
+ 382:sdlocker-tiny.cpp ****         BlinkLED(PATTERN_UNLOCKED);
+ 383:sdlocker-tiny.cpp ****     }
+ 384:sdlocker-tiny.cpp **** }
+ 385:sdlocker-tiny.cpp **** 
+ 386:sdlocker-tiny.cpp **** 
+ 387:sdlocker-tiny.cpp **** 
+ 388:sdlocker-tiny.cpp **** /*
+ 389:sdlocker-tiny.cpp ****  * ToggleState:
+ 390:sdlocker-tiny.cpp ****  * Toggle the locked/unlocked state on the card.
+ 391:sdlocker-tiny.cpp ****  */
+ 392:sdlocker-tiny.cpp **** static void ToggleState(void)
+ 393:sdlocker-tiny.cpp **** {
+ 394:sdlocker-tiny.cpp ****     uint8_t r;
+ 395:sdlocker-tiny.cpp **** 
+ 396:sdlocker-tiny.cpp ****     if (CardIsLocked())     // get ready to unlock it
+ 397:sdlocker-tiny.cpp ****     {
+ 398:sdlocker-tiny.cpp ****         csd[14] &= ~LOCK_BIT_MASK;   // clear bit 12 of CSD (temp lock)
+ 399:sdlocker-tiny.cpp ****     }
+ 400:sdlocker-tiny.cpp ****     else                    // otherwise, get ready to lock it
+ 401:sdlocker-tiny.cpp ****     {
+ 402:sdlocker-tiny.cpp ****       csd[14] |= LOCK_BIT_MASK;      // set bit 12 of CSD (temp lock)
+ 403:sdlocker-tiny.cpp ****     }
+ 404:sdlocker-tiny.cpp **** 
+ 405:sdlocker-tiny.cpp ****     r = WriteCSD(); // Attempt to write the new state to the card.
+ 406:sdlocker-tiny.cpp ****     if (r != SDCARD_OK) // If state not properly written...
+ 407:sdlocker-tiny.cpp ****     {
+ 408:sdlocker-tiny.cpp ****         BlinkLED(PATTERN_WERROR);   // ...notify this error
+ 409:sdlocker-tiny.cpp ****         BlinkLED(PATTERN_WERROR);
+ 410:sdlocker-tiny.cpp ****         BlinkLED(PATTERN_WERROR);
+ 411:sdlocker-tiny.cpp ****     }
+ 412:sdlocker-tiny.cpp **** }
+ 413:sdlocker-tiny.cpp **** 
+ 414:sdlocker-tiny.cpp **** 
+ 415:sdlocker-tiny.cpp **** 
+ 416:sdlocker-tiny.cpp **** /*
+ 417:sdlocker-tiny.cpp ****  * CardIsLocked()
+ 418:sdlocker-tiny.cpp ****  * Returns 1 if the card is locked, 0 otherwise
+ 419:sdlocker-tiny.cpp ****  */
+ 420:sdlocker-tiny.cpp **** static uint8_t CardIsLocked(void)
+ 421:sdlocker-tiny.cpp **** {
+ 422:sdlocker-tiny.cpp ****     return (csd[14] & LOCK_BIT_MASK); // check lock bit from CSD
+ 124               		.stabn	68,0,422,.LM6-.LFBB1
+ 125               	.LM6:
+ 126 000e 9091 0000 		lds r25,csd+14
+ 127               	.LBE46:
+ 128               	.LBE45:
+ 302:sdlocker-tiny.cpp ****     if (CardIsLocked())    // and if needed,
+ 129               		.stabn	68,0,302,.LM7-.LFBB1
+ 130               	.LM7:
+ 131 0012 94FD      		sbrc r25,4
+ 304:sdlocker-tiny.cpp ****         TURN_LED_ON;  // turn LED back on before returning
+ 132               		.stabn	68,0,304,.LM8-.LFBB1
+ 133               	.LM8:
+ 134 0014 C498      		cbi 56-32,4
+ 135               	.L3:
+ 136               	.LBE44:
+ 308:sdlocker-tiny.cpp **** }
+ 137               		.stabn	68,0,308,.LM9-.LFBB1
+ 138               	.LM9:
+ 139 0016 0895      		ret
+ 140               		.size	_ZL14ReadSwitchOncev, .-_ZL14ReadSwitchOncev
+ 141               		.stabs	"switchState:r(0,26)",64,0,293,24
+ 142               		.stabn	192,0,0,.LBB44-.LFBB1
+ 143               		.stabn	224,0,0,.LBE44-.LFBB1
+ 144               	.Lscope1:
+ 145               		.stabs	"",36,0,0,.Lscope1-.LFBB1
+ 146               		.stabd	78,0,0
+ 147               		.stabs	"_ZL8Deselectv:f(0,2)",36,0,442,_ZL8Deselectv
+ 148               		.type	_ZL8Deselectv, @function
+ 149               	_ZL8Deselectv:
+ 150               		.stabd	46,0,0
+ 423:sdlocker-tiny.cpp **** }
+ 424:sdlocker-tiny.cpp **** 
+ 425:sdlocker-tiny.cpp **** 
+ 426:sdlocker-tiny.cpp **** 
+ 427:sdlocker-tiny.cpp **** /*
+ 428:sdlocker-tiny.cpp ****  * Select()
+ 429:sdlocker-tiny.cpp ****  * Selects (CS enable) the SD card.
+ 430:sdlocker-tiny.cpp ****  */
+ 431:sdlocker-tiny.cpp **** static void Select(void)
+ 432:sdlocker-tiny.cpp **** {
+ 433:sdlocker-tiny.cpp ****     SPI_PORT &= ~(1<<CS_BIT);
+ 434:sdlocker-tiny.cpp **** }
+ 435:sdlocker-tiny.cpp **** 
+ 436:sdlocker-tiny.cpp **** 
+ 437:sdlocker-tiny.cpp **** 
+ 438:sdlocker-tiny.cpp **** /*
+ 439:sdlocker-tiny.cpp ****  * Deselect:
+ 440:sdlocker-tiny.cpp ****  * Deselects (CS disable) the SD card.
+ 441:sdlocker-tiny.cpp ****  */
+ 442:sdlocker-tiny.cpp **** static void Deselect(void)
+ 443:sdlocker-tiny.cpp **** {
+ 151               		.stabn	68,0,443,.LM10-.LFBB2
+ 152               	.LM10:
+ 153               	.LFBB2:
+ 154               	/* prologue: function */
+ 155               	/* frame size = 0 */
+ 156               	/* stack size = 0 */
+ 157               	.L__stack_usage = 0
+ 444:sdlocker-tiny.cpp ****     SPI_PORT |= (1<<CS_BIT);
+ 158               		.stabn	68,0,444,.LM11-.LFBB2
+ 159               	.LM11:
+ 160 0018 C39A      		sbi 56-32,3
+ 161               	/* epilogue start */
+ 445:sdlocker-tiny.cpp **** }
+ 162               		.stabn	68,0,445,.LM12-.LFBB2
+ 163               	.LM12:
+ 164 001a 0895      		ret
+ 165               		.size	_ZL8Deselectv, .-_ZL8Deselectv
+ 166               	.Lscope2:
+ 167               		.stabs	"",36,0,0,.Lscope2-.LFBB2
+ 168               		.stabd	78,0,0
+ 169               		.stabs	"_ZL4Xchgh:f(0,26)",36,0,453,_ZL4Xchgh
+ 170               		.stabs	"c:P(0,26)",64,0,453,24
+ 171               		.type	_ZL4Xchgh, @function
+ 172               	_ZL4Xchgh:
+ 173               		.stabd	46,0,0
+ 446:sdlocker-tiny.cpp **** 
+ 447:sdlocker-tiny.cpp **** 
+ 448:sdlocker-tiny.cpp **** 
+ 449:sdlocker-tiny.cpp **** /*
+ 450:sdlocker-tiny.cpp ****  * Xchg(c)
+ 451:sdlocker-tiny.cpp ****  * Exchange a byte of data with the SD card via host's SPI bus.
+ 452:sdlocker-tiny.cpp ****  */
+ 453:sdlocker-tiny.cpp **** static uint8_t Xchg(uint8_t c)
+ 454:sdlocker-tiny.cpp **** {
+ 174               		.stabn	68,0,454,.LM13-.LFBB3
+ 175               	.LM13:
+ 176               	.LFBB3:
+ 177               	/* prologue: function */
+ 178               	/* frame size = 0 */
+ 179               	/* stack size = 0 */
+ 180               	.L__stack_usage = 0
+ 181               		.stabn	68,0,454,.LM14-.LFBB3
+ 182               	.LM14:
+ 183 001c 98E0      		ldi r25,lo8(8)
+ 184               	.L10:
+ 185               	.LBB47:
+ 455:sdlocker-tiny.cpp ****     uint8_t bit = 0;
+ 456:sdlocker-tiny.cpp **** 
+ 457:sdlocker-tiny.cpp ****     // I tried to get the SPI to work following Atmel's USI specs, and failed
+ 458:sdlocker-tiny.cpp ****     // However, bit-banging works, so I'm going with that.
+ 459:sdlocker-tiny.cpp ****     for (bit=0; bit<8; bit++)   // Loop through 8 bits
+ 460:sdlocker-tiny.cpp ****     {
+ 461:sdlocker-tiny.cpp ****         if(c & 0x80) SPI_PORT |= (1<<MOSI_BIT); // If bit(7) of "c" is high
+ 186               		.stabn	68,0,461,.LM15-.LFBB3
+ 187               	.LM15:
+ 188 001e 87FF      		sbrs r24,7
+ 189 0020 00C0      		rjmp .L6
+ 190               		.stabn	68,0,461,.LM16-.LFBB3
+ 191               	.LM16:
+ 192 0022 C09A      		sbi 56-32,0
+ 193 0024 00C0      		rjmp .L7
+ 194               	.L6:
+ 462:sdlocker-tiny.cpp ****         else SPI_PORT &= ~(1<<MOSI_BIT);        // if bit(7) of "c" is low
+ 195               		.stabn	68,0,462,.LM17-.LFBB3
+ 196               	.LM17:
+ 197 0026 C098      		cbi 56-32,0
+ 198               	.L7:
+ 463:sdlocker-tiny.cpp ****         SPI_PORT |= (1<<SCK_BIT);               // Serial Clock Rising Edge
+ 199               		.stabn	68,0,463,.LM18-.LFBB3
+ 200               	.LM18:
+ 201 0028 C29A      		sbi 56-32,2
+ 464:sdlocker-tiny.cpp ****         c <<= 1;                                // Shift "c" to the left by one bit
+ 202               		.stabn	68,0,464,.LM19-.LFBB3
+ 203               	.LM19:
+ 204 002a 880F      		lsl r24
+ 465:sdlocker-tiny.cpp ****         if(SPI_PIN & (1<<MISO_BIT)) c |= 0x01;  // If bit of slave c is high
+ 205               		.stabn	68,0,465,.LM20-.LFBB3
+ 206               	.LM20:
+ 207 002c B19B      		sbis 54-32,1
+ 208 002e 00C0      		rjmp .L8
+ 209               		.stabn	68,0,465,.LM21-.LFBB3
+ 210               	.LM21:
+ 211 0030 8160      		ori r24,lo8(1)
+ 212 0032 00C0      		rjmp .L9
+ 213               	.L8:
+ 466:sdlocker-tiny.cpp ****         else c &= ~0x01;                        // if bit of slave c is low
+ 214               		.stabn	68,0,466,.LM22-.LFBB3
+ 215               	.LM22:
+ 216 0034 8E7F      		andi r24,lo8(-2)
+ 217               	.L9:
+ 467:sdlocker-tiny.cpp ****         SPI_PORT &= ~(1<<SCK_BIT);              // Serial Clock Falling Edge
+ 218               		.stabn	68,0,467,.LM23-.LFBB3
+ 219               	.LM23:
+ 220 0036 C298      		cbi 56-32,2
+ 221 0038 9150      		subi r25,lo8(-(-1))
+ 459:sdlocker-tiny.cpp ****     for (bit=0; bit<8; bit++)   // Loop through 8 bits
+ 222               		.stabn	68,0,459,.LM24-.LFBB3
+ 223               	.LM24:
+ 224 003a 01F4      		brne .L10
+ 225               	/* epilogue start */
+ 226               	.LBE47:
+ 468:sdlocker-tiny.cpp ****     }
+ 469:sdlocker-tiny.cpp **** 
+ 470:sdlocker-tiny.cpp ****     return c;   // Returns shifted c in value
+ 471:sdlocker-tiny.cpp **** }
+ 227               		.stabn	68,0,471,.LM25-.LFBB3
+ 228               	.LM25:
+ 229 003c 0895      		ret
+ 230               		.size	_ZL4Xchgh, .-_ZL4Xchgh
+ 231               	.Lscope3:
+ 232               		.stabs	"",36,0,0,.Lscope3-.LFBB3
+ 233               		.stabd	78,0,0
+ 234               		.stabs	"_ZL15SD_send_commandhm:f(0,26)",36,0,684,_ZL15SD_send_commandhm
+ 235               		.stabs	"command:P(0,26)",64,0,684,17
+ 236               		.type	_ZL15SD_send_commandhm, @function
+ 237               	_ZL15SD_send_commandhm:
+ 238               		.stabd	46,0,0
+ 472:sdlocker-tiny.cpp **** 
+ 473:sdlocker-tiny.cpp **** 
+ 474:sdlocker-tiny.cpp **** 
+ 475:sdlocker-tiny.cpp **** /*
+ 476:sdlocker-tiny.cpp ****  * SDInit()
+ 477:sdlocker-tiny.cpp ****  * Initialize the SD card.
+ 478:sdlocker-tiny.cpp ****  */
+ 479:sdlocker-tiny.cpp **** static uint8_t SDInit(void)
+ 480:sdlocker-tiny.cpp **** {
+ 481:sdlocker-tiny.cpp ****     uint16_t    i;
+ 482:sdlocker-tiny.cpp ****     uint8_t     response;
+ 483:sdlocker-tiny.cpp **** 
+ 484:sdlocker-tiny.cpp ****     sdtype = SDTYPE_UNKNOWN;    // assume this fails
+ 485:sdlocker-tiny.cpp ****     /*
+ 486:sdlocker-tiny.cpp ****      * Begin initialization by sending CMD0 and waiting until SD card
+ 487:sdlocker-tiny.cpp ****      * responds with In Idle Mode (0x01). If the response is not 0x01
+ 488:sdlocker-tiny.cpp ****      * within a reasonable amount of time, there is no SD card on the bus.
+ 489:sdlocker-tiny.cpp ****      */
+ 490:sdlocker-tiny.cpp ****     Deselect();             // always make sure card was not selected
+ 491:sdlocker-tiny.cpp ****     for (i=0; i<10; i++)    // send several clocks while card power stabilizes
+ 492:sdlocker-tiny.cpp ****     {
+ 493:sdlocker-tiny.cpp ****         Xchg(0xff);
+ 494:sdlocker-tiny.cpp ****     }
+ 495:sdlocker-tiny.cpp **** 
+ 496:sdlocker-tiny.cpp ****     for (i=0; i<10; i++)
+ 497:sdlocker-tiny.cpp ****     {
+ 498:sdlocker-tiny.cpp ****         response = SD_send_command(SD_GO_IDLE, 0);  // send CMD0 - go to idle state
+ 499:sdlocker-tiny.cpp ****         if (response == 0x01)
+ 500:sdlocker-tiny.cpp ****         {
+ 501:sdlocker-tiny.cpp ****             break;
+ 502:sdlocker-tiny.cpp ****         }
+ 503:sdlocker-tiny.cpp ****     }
+ 504:sdlocker-tiny.cpp ****     if (response != 0x01)
+ 505:sdlocker-tiny.cpp ****     {
+ 506:sdlocker-tiny.cpp ****         return SDCARD_NOT_DETECTED;
+ 507:sdlocker-tiny.cpp ****     }
+ 508:sdlocker-tiny.cpp **** 
+ 509:sdlocker-tiny.cpp ****     response = SD_send_command(SD_SEND_IF_COND, 0x1aa); // check if card is SDv2 (SDHC)
+ 510:sdlocker-tiny.cpp ****     if (response == 0x01)                               // if card is SDHC...
+ 511:sdlocker-tiny.cpp ****     {
+ 512:sdlocker-tiny.cpp ****         for (i=0; i<4; i++)                             // burn the 4-byte response (OCR)
+ 513:sdlocker-tiny.cpp ****         {
+ 514:sdlocker-tiny.cpp ****             Xchg(0xff);
+ 515:sdlocker-tiny.cpp ****         }
+ 516:sdlocker-tiny.cpp ****         for (i=20000; i>0; i--)
+ 517:sdlocker-tiny.cpp ****         {
+ 518:sdlocker-tiny.cpp ****             response = SD_send_command(SD_ADV_INIT, 1UL<<30);
+ 519:sdlocker-tiny.cpp ****             if (response == 0)
+ 520:sdlocker-tiny.cpp ****             {
+ 521:sdlocker-tiny.cpp ****                 break;
+ 522:sdlocker-tiny.cpp ****             }
+ 523:sdlocker-tiny.cpp ****         }
+ 524:sdlocker-tiny.cpp ****         sdtype = SDTYPE_SDHC;
+ 525:sdlocker-tiny.cpp ****     }
+ 526:sdlocker-tiny.cpp ****     else
+ 527:sdlocker-tiny.cpp ****     {                                               // if card is SD...
+ 528:sdlocker-tiny.cpp ****         response = SD_send_command(SD_READ_OCR, 0);
+ 529:sdlocker-tiny.cpp ****         if (response == 0x01)
+ 530:sdlocker-tiny.cpp ****         {
+ 531:sdlocker-tiny.cpp ****             for (i=0; i<4; i++)                     // burn the 4-byte response (OCR)
+ 532:sdlocker-tiny.cpp ****             {
+ 533:sdlocker-tiny.cpp ****                 Xchg(0xff);
+ 534:sdlocker-tiny.cpp ****             }
+ 535:sdlocker-tiny.cpp ****             for (i=20000; i>0; i--)
+ 536:sdlocker-tiny.cpp ****             {
+ 537:sdlocker-tiny.cpp ****                 response = SD_send_command(SD_INIT, 0);
+ 538:sdlocker-tiny.cpp ****                 if (response == 0)
+ 539:sdlocker-tiny.cpp ****                 {
+ 540:sdlocker-tiny.cpp ****                     break;
+ 541:sdlocker-tiny.cpp ****                 }
+ 542:sdlocker-tiny.cpp ****             }
+ 543:sdlocker-tiny.cpp ****             SD_send_command(SD_SET_BLK_LEN, 512);
+ 544:sdlocker-tiny.cpp ****             sdtype = SDTYPE_SD;
+ 545:sdlocker-tiny.cpp ****         }
+ 546:sdlocker-tiny.cpp ****     }
+ 547:sdlocker-tiny.cpp **** 
+ 548:sdlocker-tiny.cpp ****     Xchg(0xff); // send 8 final clocks
+ 549:sdlocker-tiny.cpp **** 
+ 550:sdlocker-tiny.cpp ****     /*
+ 551:sdlocker-tiny.cpp ****      * At this point, the SD card has completed initialization. The calling routine
+ 552:sdlocker-tiny.cpp ****      * could now increase the SPI clock rate for the SD card to the maximum allowed by
+ 553:sdlocker-tiny.cpp ****      * the SD card (typically, 20 MHz).
+ 554:sdlocker-tiny.cpp ****      */
+ 555:sdlocker-tiny.cpp **** 
+ 556:sdlocker-tiny.cpp ****     return SDCARD_OK;   // if no power routine or turning off the card, call it good
+ 557:sdlocker-tiny.cpp **** }
+ 558:sdlocker-tiny.cpp **** 
+ 559:sdlocker-tiny.cpp **** 
+ 560:sdlocker-tiny.cpp **** 
+ 561:sdlocker-tiny.cpp **** /*
+ 562:sdlocker-tiny.cpp ****  * ReadCSD()
+ 563:sdlocker-tiny.cpp ****  * Reads the CSD from the card, storing it in csd[].
+ 564:sdlocker-tiny.cpp ****  */
+ 565:sdlocker-tiny.cpp **** static uint8_t ReadCSD(void)
+ 566:sdlocker-tiny.cpp **** {
+ 567:sdlocker-tiny.cpp ****     uint8_t i;
+ 568:sdlocker-tiny.cpp ****     uint8_t response;
+ 569:sdlocker-tiny.cpp **** 
+ 570:sdlocker-tiny.cpp ****     for (i=0; i<16; i++)
+ 571:sdlocker-tiny.cpp ****     {
+ 572:sdlocker-tiny.cpp ****         csd[i] = 0;
+ 573:sdlocker-tiny.cpp ****     }
+ 574:sdlocker-tiny.cpp **** 
+ 575:sdlocker-tiny.cpp ****     response = SD_send_command(SD_SEND_CSD, 0);
+ 576:sdlocker-tiny.cpp ****     response = SD_wait_for_data();
+ 577:sdlocker-tiny.cpp ****     if (response != 0xfe)
+ 578:sdlocker-tiny.cpp ****     {
+ 579:sdlocker-tiny.cpp ****         return SDCARD_RWFAIL;
+ 580:sdlocker-tiny.cpp ****     }
+ 581:sdlocker-tiny.cpp **** 
+ 582:sdlocker-tiny.cpp ****     for (i=0; i<16; i++)
+ 583:sdlocker-tiny.cpp ****     {
+ 584:sdlocker-tiny.cpp ****         csd[i] = Xchg(0xff);
+ 585:sdlocker-tiny.cpp ****     }
+ 586:sdlocker-tiny.cpp **** 
+ 587:sdlocker-tiny.cpp ****     Xchg(0xff); // burn the CRC
+ 588:sdlocker-tiny.cpp ****     return SDCARD_OK;
+ 589:sdlocker-tiny.cpp **** }
+ 590:sdlocker-tiny.cpp **** 
+ 591:sdlocker-tiny.cpp **** 
+ 592:sdlocker-tiny.cpp **** 
+ 593:sdlocker-tiny.cpp **** /*
+ 594:sdlocker-tiny.cpp ****  * WriteCSD()
+ 595:sdlocker-tiny.cpp ****  * Writes csd[] to the CSD on the card.
+ 596:sdlocker-tiny.cpp ****  */
+ 597:sdlocker-tiny.cpp **** static uint8_t WriteCSD(void)
+ 598:sdlocker-tiny.cpp **** {
+ 599:sdlocker-tiny.cpp ****     uint8_t     response;
+ 600:sdlocker-tiny.cpp ****     uint8_t     tcrc;
+ 601:sdlocker-tiny.cpp ****     uint16_t    i;
+ 602:sdlocker-tiny.cpp **** 
+ 603:sdlocker-tiny.cpp ****     response = SD_send_command(SD_PROGRAM_CSD, 0);
+ 604:sdlocker-tiny.cpp ****     if (response != 0)
+ 605:sdlocker-tiny.cpp ****     {
+ 606:sdlocker-tiny.cpp ****         return SDCARD_RWFAIL;
+ 607:sdlocker-tiny.cpp ****     }
+ 608:sdlocker-tiny.cpp **** 
+ 609:sdlocker-tiny.cpp ****     Xchg(0xfe); // send data token marking start of data block
+ 610:sdlocker-tiny.cpp **** 
+ 611:sdlocker-tiny.cpp ****     tcrc = 0;
+ 612:sdlocker-tiny.cpp ****     for (i=0; i<15; i++)    // for all 15 data bytes in CSD...
+ 613:sdlocker-tiny.cpp ****     {
+ 614:sdlocker-tiny.cpp ****         Xchg(csd[i]);           // send each byte via SPI
+ 615:sdlocker-tiny.cpp ****         tcrc = AddByteToCRC(tcrc, csd[i]);  // add byte to CRC
+ 616:sdlocker-tiny.cpp ****     }
+ 617:sdlocker-tiny.cpp ****     Xchg((tcrc<<1) + 1);        // format the CRC7 value and send it
+ 618:sdlocker-tiny.cpp **** 
+ 619:sdlocker-tiny.cpp ****     Xchg(0xff);         // ignore dummy checksum
+ 620:sdlocker-tiny.cpp ****     Xchg(0xff);         // ignore dummy checksum
+ 621:sdlocker-tiny.cpp **** 
+ 622:sdlocker-tiny.cpp ****     i = 0xffff;         // max timeout
+ 623:sdlocker-tiny.cpp ****     while (!Xchg(0xff) && (--i));   // wait until we are not busy
+ 624:sdlocker-tiny.cpp **** 
+ 625:sdlocker-tiny.cpp ****     if (i)
+ 626:sdlocker-tiny.cpp ****     {
+ 627:sdlocker-tiny.cpp ****         return SDCARD_OK;       // return success
+ 628:sdlocker-tiny.cpp ****     }
+ 629:sdlocker-tiny.cpp ****     else
+ 630:sdlocker-tiny.cpp ****     {
+ 631:sdlocker-tiny.cpp ****         return SDCARD_TIMEOUT;  // nope, didn't work
+ 632:sdlocker-tiny.cpp ****     }
+ 633:sdlocker-tiny.cpp **** }
+ 634:sdlocker-tiny.cpp **** 
+ 635:sdlocker-tiny.cpp **** 
+ 636:sdlocker-tiny.cpp **** 
+ 637:sdlocker-tiny.cpp **** static void GenerateCRCTable(void)
+ 638:sdlocker-tiny.cpp **** {
+ 639:sdlocker-tiny.cpp ****     uint16_t i, j;
+ 640:sdlocker-tiny.cpp **** 
+ 641:sdlocker-tiny.cpp ****     // generate a table value for all 256 possible byte values
+ 642:sdlocker-tiny.cpp ****     for (i=0; i<256; i++)
+ 643:sdlocker-tiny.cpp ****     {
+ 644:sdlocker-tiny.cpp ****         crctable[i] = (i & 0x80) ? i ^ CRC7_POLY : i;
+ 645:sdlocker-tiny.cpp ****         for (j=1; j<8; j++)
+ 646:sdlocker-tiny.cpp ****         {
+ 647:sdlocker-tiny.cpp ****             crctable[i] <<= 1;
+ 648:sdlocker-tiny.cpp ****             if (crctable[i] & 0x80)
+ 649:sdlocker-tiny.cpp ****             {
+ 650:sdlocker-tiny.cpp ****                 crctable[i] ^= CRC7_POLY;
+ 651:sdlocker-tiny.cpp ****             }
+ 652:sdlocker-tiny.cpp ****         }
+ 653:sdlocker-tiny.cpp ****     }
+ 654:sdlocker-tiny.cpp **** }
+ 655:sdlocker-tiny.cpp **** 
+ 656:sdlocker-tiny.cpp **** 
+ 657:sdlocker-tiny.cpp **** 
+ 658:sdlocker-tiny.cpp **** static uint8_t AddByteToCRC(uint8_t crc, uint8_t b)
+ 659:sdlocker-tiny.cpp **** {
+ 660:sdlocker-tiny.cpp ****     return crctable[(crc << 1) ^ b];
+ 661:sdlocker-tiny.cpp **** }
+ 662:sdlocker-tiny.cpp **** 
+ 663:sdlocker-tiny.cpp **** 
+ 664:sdlocker-tiny.cpp **** 
+ 665:sdlocker-tiny.cpp **** 
+ 666:sdlocker-tiny.cpp **** /*
+ 667:sdlocker-tiny.cpp ****  * SD_send_command(command, arg)
+ 668:sdlocker-tiny.cpp ****  * Sends a raw command to SD card, returns the response.
+ 669:sdlocker-tiny.cpp ****  *
+ 670:sdlocker-tiny.cpp ****  * This routine accepts a single SD command and a 4-byte argument. It sends
+ 671:sdlocker-tiny.cpp ****  * the command plus argument, adding the appropriate CRC. It then returns
+ 672:sdlocker-tiny.cpp ****  * the one-byte response from the SD card.
+ 673:sdlocker-tiny.cpp ****  *
+ 674:sdlocker-tiny.cpp ****  * For advanced commands (those with a command byte having bit 7 set), this
+ 675:sdlocker-tiny.cpp ****  * routine automatically sends the required preface command (CMD55) before
+ 676:sdlocker-tiny.cpp ****  * sending the requested command.
+ 677:sdlocker-tiny.cpp ****  *
+ 678:sdlocker-tiny.cpp ****  * Upon exit, this routine returns the response byte from the SD card.
+ 679:sdlocker-tiny.cpp ****  * Possible responses are:
+ 680:sdlocker-tiny.cpp ****  *   0xff   No response from card; card might actually be missing
+ 681:sdlocker-tiny.cpp ****  *   0x01   SD card returned 0x01, which is OK for most commands
+ 682:sdlocker-tiny.cpp ****  *   0x??   other responses are command-specific
+ 683:sdlocker-tiny.cpp ****  */
+ 684:sdlocker-tiny.cpp **** static uint8_t SD_send_command(uint8_t command, uint32_t arg)
+ 685:sdlocker-tiny.cpp **** {
+ 239               		.stabn	68,0,685,.LM26-.LFBB4
+ 240               	.LM26:
+ 241               	.LFBB4:
+ 242 003e CF92      		push r12
+ 243 0040 DF92      		push r13
+ 244 0042 EF92      		push r14
+ 245 0044 FF92      		push r15
+ 246 0046 0F93      		push r16
+ 247 0048 1F93      		push r17
+ 248               	/* prologue: function */
+ 249               	/* frame size = 0 */
+ 250               	/* stack size = 6 */
+ 251               	.L__stack_usage = 6
+ 252 004a 182F      		mov r17,r24
+ 253 004c 042F      		mov r16,r20
+ 254 004e F52E      		mov r15,r21
+ 255 0050 E62E      		mov r14,r22
+ 256 0052 D72E      		mov r13,r23
+ 257               	.LBB48:
+ 686:sdlocker-tiny.cpp ****     uint8_t response;
+ 687:sdlocker-tiny.cpp ****     uint8_t i;
+ 688:sdlocker-tiny.cpp ****     uint8_t crc;
+ 689:sdlocker-tiny.cpp **** 
+ 690:sdlocker-tiny.cpp ****     if (command & 0x80)     // special case, ACMD(n) is sent as CMD55 and CMDn
+ 258               		.stabn	68,0,690,.LM27-.LFBB4
+ 259               	.LM27:
+ 260 0054 87FF      		sbrs r24,7
+ 261 0056 00C0      		rjmp .L13
+ 691:sdlocker-tiny.cpp ****     {
+ 692:sdlocker-tiny.cpp ****         command = command & 0x7f;               // strip high bit for later
+ 693:sdlocker-tiny.cpp ****         response = SD_send_command(CMD55, 0);   // send first part (recursion)
+ 262               		.stabn	68,0,693,.LM28-.LFBB4
+ 263               	.LM28:
+ 264 0058 87E7      		ldi r24,lo8(119)
+ 265 005a 40E0      		ldi r20,lo8(0)
+ 266 005c 50E0      		ldi r21,hi8(0)
+ 267 005e BA01      		movw r22,r20
+ 268 0060 00D0      		rcall _ZL15SD_send_commandhm
+ 269 0062 C82E      		mov r12,r24
+ 694:sdlocker-tiny.cpp ****         if (response > 1)
+ 270               		.stabn	68,0,694,.LM29-.LFBB4
+ 271               	.LM29:
+ 272 0064 8230      		cpi r24,lo8(2)
+ 273 0066 00F4      		brsh .L14
+ 692:sdlocker-tiny.cpp ****         command = command & 0x7f;               // strip high bit for later
+ 274               		.stabn	68,0,692,.LM30-.LFBB4
+ 275               	.LM30:
+ 276 0068 1F77      		andi r17,lo8(127)
+ 277               	.L13:
+ 695:sdlocker-tiny.cpp ****         {
+ 696:sdlocker-tiny.cpp ****             return response;
+ 697:sdlocker-tiny.cpp ****         }
+ 698:sdlocker-tiny.cpp ****     }
+ 699:sdlocker-tiny.cpp **** 
+ 700:sdlocker-tiny.cpp ****     Deselect();
+ 278               		.stabn	68,0,700,.LM31-.LFBB4
+ 279               	.LM31:
+ 280 006a 00D0      		rcall _ZL8Deselectv
+ 701:sdlocker-tiny.cpp ****     Xchg(0xff);
+ 281               		.stabn	68,0,701,.LM32-.LFBB4
+ 282               	.LM32:
+ 283 006c 8FEF      		ldi r24,lo8(-1)
+ 284 006e 00D0      		rcall _ZL4Xchgh
+ 285               	.LBB49:
+ 286               	.LBB50:
+ 433:sdlocker-tiny.cpp ****     SPI_PORT &= ~(1<<CS_BIT);
+ 287               		.stabn	68,0,433,.LM33-.LFBB4
+ 288               	.LM33:
+ 289 0070 C398      		cbi 56-32,3
+ 290               	.LBE50:
+ 291               	.LBE49:
+ 702:sdlocker-tiny.cpp ****     Select();   // enable CS
+ 703:sdlocker-tiny.cpp ****     Xchg(0xff);
+ 292               		.stabn	68,0,703,.LM34-.LFBB4
+ 293               	.LM34:
+ 294 0072 8FEF      		ldi r24,lo8(-1)
+ 295 0074 00D0      		rcall _ZL4Xchgh
+ 704:sdlocker-tiny.cpp **** 
+ 705:sdlocker-tiny.cpp ****     Xchg(command | 0x40);       // command always has bit 6 set!
+ 296               		.stabn	68,0,705,.LM35-.LFBB4
+ 297               	.LM35:
+ 298 0076 812F      		mov r24,r17
+ 299 0078 8064      		ori r24,lo8(64)
+ 300 007a 00D0      		rcall _ZL4Xchgh
+ 706:sdlocker-tiny.cpp ****     Xchg((uint8_t)(arg>>24));   // send data, starting with top byte
+ 301               		.stabn	68,0,706,.LM36-.LFBB4
+ 302               	.LM36:
+ 303 007c 8D2D      		mov r24,r13
+ 304 007e 00D0      		rcall _ZL4Xchgh
+ 707:sdlocker-tiny.cpp ****     Xchg((uint8_t)(arg>>16));
+ 305               		.stabn	68,0,707,.LM37-.LFBB4
+ 306               	.LM37:
+ 307 0080 8E2D      		mov r24,r14
+ 308 0082 00D0      		rcall _ZL4Xchgh
+ 708:sdlocker-tiny.cpp ****     Xchg((uint8_t)(arg>>8));
+ 309               		.stabn	68,0,708,.LM38-.LFBB4
+ 310               	.LM38:
+ 311 0084 8F2D      		mov r24,r15
+ 312 0086 00D0      		rcall _ZL4Xchgh
+ 709:sdlocker-tiny.cpp ****     Xchg((uint8_t)(arg&0xff));
+ 313               		.stabn	68,0,709,.LM39-.LFBB4
+ 314               	.LM39:
+ 315 0088 802F      		mov r24,r16
+ 316 008a 00D0      		rcall _ZL4Xchgh
+ 710:sdlocker-tiny.cpp ****     crc = 0x01;                 // good for most cases
+ 711:sdlocker-tiny.cpp **** 
+ 712:sdlocker-tiny.cpp ****     if (command == SD_GO_IDLE)
+ 317               		.stabn	68,0,712,.LM40-.LFBB4
+ 318               	.LM40:
+ 319 008c 1034      		cpi r17,lo8(64)
+ 320 008e 01F0      		breq .L19
+ 713:sdlocker-tiny.cpp ****     {
+ 714:sdlocker-tiny.cpp ****         crc = 0x95;             // this will be good enough for most commands
+ 715:sdlocker-tiny.cpp ****     }
+ 716:sdlocker-tiny.cpp ****     if (command == SD_SEND_IF_COND)
+ 321               		.stabn	68,0,716,.LM41-.LFBB4
+ 322               	.LM41:
+ 323 0090 1834      		cpi r17,lo8(72)
+ 324 0092 01F0      		breq .L20
+ 710:sdlocker-tiny.cpp ****     crc = 0x01;                 // good for most cases
+ 325               		.stabn	68,0,710,.LM42-.LFBB4
+ 326               	.LM42:
+ 327 0094 81E0      		ldi r24,lo8(1)
+ 328 0096 00C0      		rjmp .L16
+ 329               	.L19:
+ 714:sdlocker-tiny.cpp ****         crc = 0x95;             // this will be good enough for most commands
+ 330               		.stabn	68,0,714,.LM43-.LFBB4
+ 331               	.LM43:
+ 332 0098 85E9      		ldi r24,lo8(-107)
+ 333 009a 00C0      		rjmp .L16
+ 334               	.L20:
+ 717:sdlocker-tiny.cpp ****     {
+ 718:sdlocker-tiny.cpp ****         crc = 0x87;             // special case, have to use different CRC
+ 335               		.stabn	68,0,718,.LM44-.LFBB4
+ 336               	.LM44:
+ 337 009c 87E8      		ldi r24,lo8(-121)
+ 338               	.L16:
+ 719:sdlocker-tiny.cpp ****     }
+ 720:sdlocker-tiny.cpp **** 
+ 721:sdlocker-tiny.cpp ****     Xchg(crc);                  // send final byte
+ 339               		.stabn	68,0,721,.LM45-.LFBB4
+ 340               	.LM45:
+ 341 009e 00D0      		rcall _ZL4Xchgh
+ 342 00a0 0AE0      		ldi r16,lo8(10)
+ 343               	.L18:
+ 722:sdlocker-tiny.cpp **** 
+ 723:sdlocker-tiny.cpp ****     for (i=0; i<10; i++)        // loop until timeout or response
+ 724:sdlocker-tiny.cpp ****     {
+ 725:sdlocker-tiny.cpp ****         response = Xchg(0xff);
+ 344               		.stabn	68,0,725,.LM46-.LFBB4
+ 345               	.LM46:
+ 346 00a2 8FEF      		ldi r24,lo8(-1)
+ 347 00a4 00D0      		rcall _ZL4Xchgh
+ 348 00a6 C82E      		mov r12,r24
+ 726:sdlocker-tiny.cpp ****         if ((response & 0x80) == 0)
+ 349               		.stabn	68,0,726,.LM47-.LFBB4
+ 350               	.LM47:
+ 351 00a8 87FF      		sbrs r24,7
+ 352 00aa 00C0      		rjmp .L17
+ 353 00ac 0150      		subi r16,lo8(-(-1))
+ 723:sdlocker-tiny.cpp ****     for (i=0; i<10; i++)        // loop until timeout or response
+ 354               		.stabn	68,0,723,.LM48-.LFBB4
+ 355               	.LM48:
+ 356 00ae 01F4      		brne .L18
+ 357               	.L17:
+ 727:sdlocker-tiny.cpp ****         {
+ 728:sdlocker-tiny.cpp ****             break;              // high bit cleared means we got a response
+ 729:sdlocker-tiny.cpp ****         }
+ 730:sdlocker-tiny.cpp ****     }
+ 731:sdlocker-tiny.cpp **** 
+ 732:sdlocker-tiny.cpp ****     /*
+ 733:sdlocker-tiny.cpp ****      * We have issued the command but the SD card is still selected. We
+ 734:sdlocker-tiny.cpp ****      * only deselect the card if the command we just sent is NOT a command
+ 735:sdlocker-tiny.cpp ****      * that requires additional data exchange, such as reading or writing
+ 736:sdlocker-tiny.cpp ****      * a block.
+ 737:sdlocker-tiny.cpp ****      */
+ 738:sdlocker-tiny.cpp ****     if ((command != SD_READ_BLK) &&
+ 358               		.stabn	68,0,738,.LM49-.LFBB4
+ 359               	.LM49:
+ 360 00b0 1135      		cpi r17,lo8(81)
+ 361 00b2 01F0      		breq .L14
+ 362               		.stabn	68,0,738,.LM50-.LFBB4
+ 363               	.LM50:
+ 364 00b4 1A37      		cpi r17,lo8(122)
+ 365 00b6 01F0      		breq .L14
+ 366               		.stabn	68,0,738,.LM51-.LFBB4
+ 367               	.LM51:
+ 368 00b8 1934      		cpi r17,lo8(73)
+ 369 00ba 01F0      		breq .L14
+ 370               		.stabn	68,0,738,.LM52-.LFBB4
+ 371               	.LM52:
+ 372 00bc 1D34      		cpi r17,lo8(77)
+ 373 00be 01F0      		breq .L14
+ 374               		.stabn	68,0,738,.LM53-.LFBB4
+ 375               	.LM53:
+ 376 00c0 1A34      		cpi r17,lo8(74)
+ 377 00c2 01F0      		breq .L14
+ 378               		.stabn	68,0,738,.LM54-.LFBB4
+ 379               	.LM54:
+ 380 00c4 1834      		cpi r17,lo8(72)
+ 381 00c6 01F0      		breq .L14
+ 382               		.stabn	68,0,738,.LM55-.LFBB4
+ 383               	.LM55:
+ 384 00c8 1A36      		cpi r17,lo8(106)
+ 385 00ca 01F0      		breq .L14
+ 386               		.stabn	68,0,738,.LM56-.LFBB4
+ 387               	.LM56:
+ 388 00cc 1B35      		cpi r17,lo8(91)
+ 389 00ce 01F0      		breq .L14
+ 739:sdlocker-tiny.cpp ****         (command != SD_READ_OCR) &&
+ 740:sdlocker-tiny.cpp ****         (command != SD_SEND_CSD) &&
+ 741:sdlocker-tiny.cpp ****         (command != SD_SEND_STATUS) &&
+ 742:sdlocker-tiny.cpp ****         (command != SD_SEND_CID) &&
+ 743:sdlocker-tiny.cpp ****         (command != SD_SEND_IF_COND) &&
+ 744:sdlocker-tiny.cpp ****         (command != SD_LOCK_UNLOCK) &&
+ 745:sdlocker-tiny.cpp ****         (command != SD_PROGRAM_CSD))
+ 746:sdlocker-tiny.cpp ****     {
+ 747:sdlocker-tiny.cpp ****         Deselect(); // all done
+ 390               		.stabn	68,0,747,.LM57-.LFBB4
+ 391               	.LM57:
+ 392 00d0 00D0      		rcall _ZL8Deselectv
+ 748:sdlocker-tiny.cpp ****         Xchg(0xff); // close with eight more clocks
+ 393               		.stabn	68,0,748,.LM58-.LFBB4
+ 394               	.LM58:
+ 395 00d2 8FEF      		ldi r24,lo8(-1)
+ 396 00d4 00D0      		rcall _ZL4Xchgh
+ 397               	.L14:
+ 398               	.LBE48:
+ 749:sdlocker-tiny.cpp ****     }
+ 750:sdlocker-tiny.cpp **** 
+ 751:sdlocker-tiny.cpp ****     return response;    // let the caller sort it out
+ 752:sdlocker-tiny.cpp **** }
+ 399               		.stabn	68,0,752,.LM59-.LFBB4
+ 400               	.LM59:
+ 401 00d6 8C2D      		mov r24,r12
+ 402               	/* epilogue start */
+ 403 00d8 1F91      		pop r17
+ 404 00da 0F91      		pop r16
+ 405 00dc FF90      		pop r15
+ 406 00de EF90      		pop r14
+ 407 00e0 DF90      		pop r13
+ 408 00e2 CF90      		pop r12
+ 409 00e4 0895      		ret
+ 410               		.size	_ZL15SD_send_commandhm, .-_ZL15SD_send_commandhm
+ 411               		.stabs	"response:r(0,26)",64,0,686,12
+ 412               		.stabs	"crc:r(0,26)",64,0,688,24
+ 413               		.stabn	192,0,0,.LBB48-.LFBB4
+ 414               		.stabn	224,0,0,.LBE48-.LFBB4
+ 415               	.Lscope4:
+ 416               		.stabs	"",36,0,0,.Lscope4-.LFBB4
+ 417               		.stabd	78,0,0
+ 418               		.stabs	"_ZL6SDInitv:f(0,26)",36,0,479,_ZL6SDInitv
+ 419               		.type	_ZL6SDInitv, @function
+ 420               	_ZL6SDInitv:
+ 421               		.stabd	46,0,0
+ 480:sdlocker-tiny.cpp **** {
+ 422               		.stabn	68,0,480,.LM60-.LFBB5
+ 423               	.LM60:
+ 424               	.LFBB5:
+ 425 00e6 CF93      		push r28
+ 426 00e8 DF93      		push r29
+ 427               	/* prologue: function */
+ 428               	/* frame size = 0 */
+ 429               	/* stack size = 2 */
+ 430               	.L__stack_usage = 2
+ 431               	.LBB51:
+ 484:sdlocker-tiny.cpp ****     sdtype = SDTYPE_UNKNOWN;    // assume this fails
+ 432               		.stabn	68,0,484,.LM61-.LFBB5
+ 433               	.LM61:
+ 434 00ea 1092 0000 		sts sdtype,__zero_reg__
+ 490:sdlocker-tiny.cpp ****     Deselect();             // always make sure card was not selected
+ 435               		.stabn	68,0,490,.LM62-.LFBB5
+ 436               	.LM62:
+ 437 00ee 00D0      		rcall _ZL8Deselectv
+ 438 00f0 CAE0      		ldi r28,lo8(10)
+ 439 00f2 D0E0      		ldi r29,hi8(10)
+ 440               	.L23:
+ 493:sdlocker-tiny.cpp ****         Xchg(0xff);
+ 441               		.stabn	68,0,493,.LM63-.LFBB5
+ 442               	.LM63:
+ 443 00f4 8FEF      		ldi r24,lo8(-1)
+ 444 00f6 00D0      		rcall _ZL4Xchgh
+ 445 00f8 2197      		sbiw r28,1
+ 491:sdlocker-tiny.cpp ****     for (i=0; i<10; i++)    // send several clocks while card power stabilizes
+ 446               		.stabn	68,0,491,.LM64-.LFBB5
+ 447               	.LM64:
+ 448 00fa 01F4      		brne .L23
+ 491:sdlocker-tiny.cpp ****     for (i=0; i<10; i++)    // send several clocks while card power stabilizes
+ 449               		.stabn	68,0,491,.LM65-.LFBB5
+ 450               	.LM65:
+ 451 00fc CAE0      		ldi r28,lo8(10)
+ 452 00fe D0E0      		ldi r29,hi8(10)
+ 453               	.L25:
+ 498:sdlocker-tiny.cpp ****         response = SD_send_command(SD_GO_IDLE, 0);  // send CMD0 - go to idle state
+ 454               		.stabn	68,0,498,.LM66-.LFBB5
+ 455               	.LM66:
+ 456 0100 80E4      		ldi r24,lo8(64)
+ 457 0102 40E0      		ldi r20,lo8(0)
+ 458 0104 50E0      		ldi r21,hi8(0)
+ 459 0106 BA01      		movw r22,r20
+ 460 0108 00D0      		rcall _ZL15SD_send_commandhm
+ 499:sdlocker-tiny.cpp ****         if (response == 0x01)
+ 461               		.stabn	68,0,499,.LM67-.LFBB5
+ 462               	.LM67:
+ 463 010a 8130      		cpi r24,lo8(1)
+ 464 010c 01F0      		breq .L24
+ 465 010e 2197      		sbiw r28,1
+ 496:sdlocker-tiny.cpp ****     for (i=0; i<10; i++)
+ 466               		.stabn	68,0,496,.LM68-.LFBB5
+ 467               	.LM68:
+ 468 0110 01F4      		brne .L25
+ 506:sdlocker-tiny.cpp ****         return SDCARD_NOT_DETECTED;
+ 469               		.stabn	68,0,506,.LM69-.LFBB5
+ 470               	.LM69:
+ 471 0112 81E0      		ldi r24,lo8(1)
+ 472 0114 00C0      		rjmp .L26
+ 473               	.L24:
+ 509:sdlocker-tiny.cpp ****     response = SD_send_command(SD_SEND_IF_COND, 0x1aa); // check if card is SDv2 (SDHC)
+ 474               		.stabn	68,0,509,.LM70-.LFBB5
+ 475               	.LM70:
+ 476 0116 88E4      		ldi r24,lo8(72)
+ 477 0118 4AEA      		ldi r20,lo8(426)
+ 478 011a 51E0      		ldi r21,hi8(426)
+ 479 011c 60E0      		ldi r22,hlo8(426)
+ 480 011e 70E0      		ldi r23,hhi8(426)
+ 481 0120 00D0      		rcall _ZL15SD_send_commandhm
+ 510:sdlocker-tiny.cpp ****     if (response == 0x01)                               // if card is SDHC...
+ 482               		.stabn	68,0,510,.LM71-.LFBB5
+ 483               	.LM71:
+ 484 0122 8130      		cpi r24,lo8(1)
+ 485 0124 01F4      		brne .L27
+ 510:sdlocker-tiny.cpp ****     if (response == 0x01)                               // if card is SDHC...
+ 486               		.stabn	68,0,510,.LM72-.LFBB5
+ 487               	.LM72:
+ 488 0126 C4E0      		ldi r28,lo8(4)
+ 489 0128 D0E0      		ldi r29,hi8(4)
+ 490               	.L28:
+ 514:sdlocker-tiny.cpp ****             Xchg(0xff);
+ 491               		.stabn	68,0,514,.LM73-.LFBB5
+ 492               	.LM73:
+ 493 012a 8FEF      		ldi r24,lo8(-1)
+ 494 012c 00D0      		rcall _ZL4Xchgh
+ 495 012e 2197      		sbiw r28,1
+ 512:sdlocker-tiny.cpp ****         for (i=0; i<4; i++)                             // burn the 4-byte response (OCR)
+ 496               		.stabn	68,0,512,.LM74-.LFBB5
+ 497               	.LM74:
+ 498 0130 01F4      		brne .L28
+ 512:sdlocker-tiny.cpp ****         for (i=0; i<4; i++)                             // burn the 4-byte response (OCR)
+ 499               		.stabn	68,0,512,.LM75-.LFBB5
+ 500               	.LM75:
+ 501 0132 C0E2      		ldi r28,lo8(20000)
+ 502 0134 DEE4      		ldi r29,hi8(20000)
+ 503               	.L30:
+ 518:sdlocker-tiny.cpp ****             response = SD_send_command(SD_ADV_INIT, 1UL<<30);
+ 504               		.stabn	68,0,518,.LM76-.LFBB5
+ 505               	.LM76:
+ 506 0136 89EE      		ldi r24,lo8(-23)
+ 507 0138 40E0      		ldi r20,lo8(1073741824)
+ 508 013a 50E0      		ldi r21,hi8(1073741824)
+ 509 013c 60E0      		ldi r22,hlo8(1073741824)
+ 510 013e 70E4      		ldi r23,hhi8(1073741824)
+ 511 0140 00D0      		rcall _ZL15SD_send_commandhm
+ 519:sdlocker-tiny.cpp ****             if (response == 0)
+ 512               		.stabn	68,0,519,.LM77-.LFBB5
+ 513               	.LM77:
+ 514 0142 8823      		tst r24
+ 515 0144 01F0      		breq .L29
+ 516 0146 2197      		sbiw r28,1
+ 516:sdlocker-tiny.cpp ****         for (i=20000; i>0; i--)
+ 517               		.stabn	68,0,516,.LM78-.LFBB5
+ 518               	.LM78:
+ 519 0148 01F4      		brne .L30
+ 520               	.L29:
+ 524:sdlocker-tiny.cpp ****         sdtype = SDTYPE_SDHC;
+ 521               		.stabn	68,0,524,.LM79-.LFBB5
+ 522               	.LM79:
+ 523 014a 82E0      		ldi r24,lo8(2)
+ 524 014c 00C0      		rjmp .L41
+ 525               	.L27:
+ 528:sdlocker-tiny.cpp ****         response = SD_send_command(SD_READ_OCR, 0);
+ 526               		.stabn	68,0,528,.LM80-.LFBB5
+ 527               	.LM80:
+ 528 014e 8AE7      		ldi r24,lo8(122)
+ 529 0150 40E0      		ldi r20,lo8(0)
+ 530 0152 50E0      		ldi r21,hi8(0)
+ 531 0154 BA01      		movw r22,r20
+ 532 0156 00D0      		rcall _ZL15SD_send_commandhm
+ 529:sdlocker-tiny.cpp ****         if (response == 0x01)
+ 533               		.stabn	68,0,529,.LM81-.LFBB5
+ 534               	.LM81:
+ 535 0158 8130      		cpi r24,lo8(1)
+ 536 015a 01F4      		brne .L31
+ 529:sdlocker-tiny.cpp ****         if (response == 0x01)
+ 537               		.stabn	68,0,529,.LM82-.LFBB5
+ 538               	.LM82:
+ 539 015c C4E0      		ldi r28,lo8(4)
+ 540 015e D0E0      		ldi r29,hi8(4)
+ 541               	.L32:
+ 533:sdlocker-tiny.cpp ****                 Xchg(0xff);
+ 542               		.stabn	68,0,533,.LM83-.LFBB5
+ 543               	.LM83:
+ 544 0160 8FEF      		ldi r24,lo8(-1)
+ 545 0162 00D0      		rcall _ZL4Xchgh
+ 546 0164 2197      		sbiw r28,1
+ 531:sdlocker-tiny.cpp ****             for (i=0; i<4; i++)                     // burn the 4-byte response (OCR)
+ 547               		.stabn	68,0,531,.LM84-.LFBB5
+ 548               	.LM84:
+ 549 0166 01F4      		brne .L32
+ 531:sdlocker-tiny.cpp ****             for (i=0; i<4; i++)                     // burn the 4-byte response (OCR)
+ 550               		.stabn	68,0,531,.LM85-.LFBB5
+ 551               	.LM85:
+ 552 0168 C0E2      		ldi r28,lo8(20000)
+ 553 016a DEE4      		ldi r29,hi8(20000)
+ 554               	.L34:
+ 537:sdlocker-tiny.cpp ****                 response = SD_send_command(SD_INIT, 0);
+ 555               		.stabn	68,0,537,.LM86-.LFBB5
+ 556               	.LM86:
+ 557 016c 81E4      		ldi r24,lo8(65)
+ 558 016e 40E0      		ldi r20,lo8(0)
+ 559 0170 50E0      		ldi r21,hi8(0)
+ 560 0172 BA01      		movw r22,r20
+ 561 0174 00D0      		rcall _ZL15SD_send_commandhm
+ 538:sdlocker-tiny.cpp ****                 if (response == 0)
+ 562               		.stabn	68,0,538,.LM87-.LFBB5
+ 563               	.LM87:
+ 564 0176 8823      		tst r24
+ 565 0178 01F0      		breq .L33
+ 566 017a 2197      		sbiw r28,1
+ 535:sdlocker-tiny.cpp ****             for (i=20000; i>0; i--)
+ 567               		.stabn	68,0,535,.LM88-.LFBB5
+ 568               	.LM88:
+ 569 017c 01F4      		brne .L34
+ 570               	.L33:
+ 543:sdlocker-tiny.cpp ****             SD_send_command(SD_SET_BLK_LEN, 512);
+ 571               		.stabn	68,0,543,.LM89-.LFBB5
+ 572               	.LM89:
+ 573 017e 80E5      		ldi r24,lo8(80)
+ 574 0180 40E0      		ldi r20,lo8(512)
+ 575 0182 52E0      		ldi r21,hi8(512)
+ 576 0184 60E0      		ldi r22,hlo8(512)
+ 577 0186 70E0      		ldi r23,hhi8(512)
+ 578 0188 00D0      		rcall _ZL15SD_send_commandhm
+ 544:sdlocker-tiny.cpp ****             sdtype = SDTYPE_SD;
+ 579               		.stabn	68,0,544,.LM90-.LFBB5
+ 580               	.LM90:
+ 581 018a 81E0      		ldi r24,lo8(1)
+ 582               	.L41:
+ 583 018c 8093 0000 		sts sdtype,r24
+ 584               	.L31:
+ 548:sdlocker-tiny.cpp ****     Xchg(0xff); // send 8 final clocks
+ 585               		.stabn	68,0,548,.LM91-.LFBB5
+ 586               	.LM91:
+ 587 0190 8FEF      		ldi r24,lo8(-1)
+ 588 0192 00D0      		rcall _ZL4Xchgh
+ 556:sdlocker-tiny.cpp ****     return SDCARD_OK;   // if no power routine or turning off the card, call it good
+ 589               		.stabn	68,0,556,.LM92-.LFBB5
+ 590               	.LM92:
+ 591 0194 80E0      		ldi r24,lo8(0)
+ 592               	.L26:
+ 593               	/* epilogue start */
+ 594               	.LBE51:
+ 557:sdlocker-tiny.cpp **** }
+ 595               		.stabn	68,0,557,.LM93-.LFBB5
+ 596               	.LM93:
+ 597 0196 DF91      		pop r29
+ 598 0198 CF91      		pop r28
+ 599 019a 0895      		ret
+ 600               		.size	_ZL6SDInitv, .-_ZL6SDInitv
+ 601               	.Lscope5:
+ 602               		.stabs	"",36,0,0,.Lscope5-.LFBB5
+ 603               		.stabd	78,0,0
+ 604               		.stabs	"_ZL7ReadCSDv:f(0,26)",36,0,565,_ZL7ReadCSDv
+ 605               		.type	_ZL7ReadCSDv, @function
+ 606               	_ZL7ReadCSDv:
+ 607               		.stabd	46,0,0
+ 566:sdlocker-tiny.cpp **** {
+ 608               		.stabn	68,0,566,.LM94-.LFBB6
+ 609               	.LM94:
+ 610               	.LFBB6:
+ 611 019c 1F93      		push r17
+ 612 019e CF93      		push r28
+ 613 01a0 DF93      		push r29
+ 614               	/* prologue: function */
+ 615               	/* frame size = 0 */
+ 616               	/* stack size = 3 */
+ 617               	.L__stack_usage = 3
+ 618               	.LBB52:
+ 619               	.LBB53:
+ 620               	.LBB54:
+ 579:sdlocker-tiny.cpp ****         return SDCARD_RWFAIL;
+ 621               		.stabn	68,0,579,.LM95-.LFBB6
+ 622               	.LM95:
+ 623 01a2 C0E0      		ldi r28,lo8(csd)
+ 624 01a4 D0E0      		ldi r29,hi8(csd)
+ 625               	.LBE54:
+ 626               	.LBE53:
+ 627               	.LBE52:
+ 565:sdlocker-tiny.cpp **** static uint8_t ReadCSD(void)
+ 628               		.stabn	68,0,565,.LM96-.LFBB6
+ 629               	.LM96:
+ 630 01a6 FE01      		movw r30,r28
+ 631               	.L43:
+ 632               	.LBB57:
+ 572:sdlocker-tiny.cpp ****         csd[i] = 0;
+ 633               		.stabn	68,0,572,.LM97-.LFBB6
+ 634               	.LM97:
+ 635 01a8 1192      		st Z+,__zero_reg__
+ 570:sdlocker-tiny.cpp ****     for (i=0; i<16; i++)
+ 636               		.stabn	68,0,570,.LM98-.LFBB6
+ 637               	.LM98:
+ 638 01aa 80E0      		ldi r24,hi8(csd+16)
+ 639 01ac E030      		cpi r30,lo8(csd+16)
+ 640 01ae F807      		cpc r31,r24
+ 641 01b0 01F4      		brne .L43
+ 575:sdlocker-tiny.cpp ****     response = SD_send_command(SD_SEND_CSD, 0);
+ 642               		.stabn	68,0,575,.LM99-.LFBB6
+ 643               	.LM99:
+ 644 01b2 89E4      		ldi r24,lo8(73)
+ 645 01b4 40E0      		ldi r20,lo8(0)
+ 646 01b6 50E0      		ldi r21,hi8(0)
+ 647 01b8 BA01      		movw r22,r20
+ 648 01ba 00D0      		rcall _ZL15SD_send_commandhm
+ 649 01bc 14E6      		ldi r17,lo8(100)
+ 650               	.L45:
+ 651               	.LBB56:
+ 652               	.LBB55:
+ 753:sdlocker-tiny.cpp **** 
+ 754:sdlocker-tiny.cpp **** 
+ 755:sdlocker-tiny.cpp **** static uint8_t SD_wait_for_data(void)
+ 756:sdlocker-tiny.cpp **** {
+ 757:sdlocker-tiny.cpp ****     uint8_t i;
+ 758:sdlocker-tiny.cpp ****     uint8_t r;
+ 759:sdlocker-tiny.cpp **** 
+ 760:sdlocker-tiny.cpp ****     for (i=0; i<100; i++)
+ 761:sdlocker-tiny.cpp ****     {
+ 762:sdlocker-tiny.cpp ****         r = Xchg(0xff);
+ 653               		.stabn	68,0,762,.LM100-.LFBB6
+ 654               	.LM100:
+ 655 01be 8FEF      		ldi r24,lo8(-1)
+ 656 01c0 00D0      		rcall _ZL4Xchgh
+ 763:sdlocker-tiny.cpp ****         if (r != 0xff)
+ 657               		.stabn	68,0,763,.LM101-.LFBB6
+ 658               	.LM101:
+ 659 01c2 8F3F      		cpi r24,lo8(-1)
+ 660 01c4 01F4      		brne .L44
+ 661 01c6 1150      		subi r17,lo8(-(-1))
+ 760:sdlocker-tiny.cpp ****     for (i=0; i<100; i++)
+ 662               		.stabn	68,0,760,.LM102-.LFBB6
+ 663               	.LM102:
+ 664 01c8 01F4      		brne .L45
+ 665 01ca 00C0      		rjmp .L48
+ 666               	.L44:
+ 667               	.LBE55:
+ 668               	.LBE56:
+ 577:sdlocker-tiny.cpp ****     if (response != 0xfe)
+ 669               		.stabn	68,0,577,.LM103-.LFBB6
+ 670               	.LM103:
+ 671 01cc 8E3F      		cpi r24,lo8(-2)
+ 672 01ce 01F4      		brne .L48
+ 673               	.L49:
+ 584:sdlocker-tiny.cpp ****         csd[i] = Xchg(0xff);
+ 674               		.stabn	68,0,584,.LM104-.LFBB6
+ 675               	.LM104:
+ 676 01d0 8FEF      		ldi r24,lo8(-1)
+ 677 01d2 00D0      		rcall _ZL4Xchgh
+ 678 01d4 8993      		st Y+,r24
+ 582:sdlocker-tiny.cpp ****     for (i=0; i<16; i++)
+ 679               		.stabn	68,0,582,.LM105-.LFBB6
+ 680               	.LM105:
+ 681 01d6 80E0      		ldi r24,hi8(csd+16)
+ 682 01d8 C030      		cpi r28,lo8(csd+16)
+ 683 01da D807      		cpc r29,r24
+ 684 01dc 01F4      		brne .L49
+ 587:sdlocker-tiny.cpp ****     Xchg(0xff); // burn the CRC
+ 685               		.stabn	68,0,587,.LM106-.LFBB6
+ 686               	.LM106:
+ 687 01de 8FEF      		ldi r24,lo8(-1)
+ 688 01e0 00D0      		rcall _ZL4Xchgh
+ 588:sdlocker-tiny.cpp ****     return SDCARD_OK;
+ 689               		.stabn	68,0,588,.LM107-.LFBB6
+ 690               	.LM107:
+ 691 01e2 80E0      		ldi r24,lo8(0)
+ 692 01e4 00C0      		rjmp .L46
+ 693               	.L48:
+ 579:sdlocker-tiny.cpp ****         return SDCARD_RWFAIL;
+ 694               		.stabn	68,0,579,.LM108-.LFBB6
+ 695               	.LM108:
+ 696 01e6 83E0      		ldi r24,lo8(3)
+ 697               	.L46:
+ 698               	/* epilogue start */
+ 699               	.LBE57:
+ 589:sdlocker-tiny.cpp **** }
+ 700               		.stabn	68,0,589,.LM109-.LFBB6
+ 701               	.LM109:
+ 702 01e8 DF91      		pop r29
+ 703 01ea CF91      		pop r28
+ 704 01ec 1F91      		pop r17
+ 705 01ee 0895      		ret
+ 706               		.size	_ZL7ReadCSDv, .-_ZL7ReadCSDv
+ 707               		.stabs	"response:r(0,26)",64,0,568,24
+ 708               		.stabn	192,0,0,.LBB52-.LFBB6
+ 709               		.stabn	224,0,0,.LBE52-.LFBB6
+ 710               		.stabs	"response:r(0,26)",64,0,568,24
+ 711               		.stabn	192,0,0,.LBB57-.LFBB6
+ 712               		.stabn	224,0,0,.LBE57-.LFBB6
+ 713               	.Lscope6:
+ 714               		.stabs	"",36,0,0,.Lscope6-.LFBB6
+ 715               		.stabd	78,0,0
+ 716               		.stabs	"_ZL8BlinkLEDm:f(0,2)",36,0,316,_ZL8BlinkLEDm
+ 717               		.stabs	"pattern:P(0,30)",64,0,316,22
+ 718               		.type	_ZL8BlinkLEDm, @function
+ 719               	_ZL8BlinkLEDm:
+ 720               		.stabd	46,0,0
+ 317:sdlocker-tiny.cpp **** {
+ 721               		.stabn	68,0,317,.LM110-.LFBB7
+ 722               	.LM110:
+ 723               	.LFBB7:
+ 724               	/* prologue: function */
+ 725               	/* frame size = 0 */
+ 726               	/* stack size = 0 */
+ 727               	.L__stack_usage = 0
+ 317:sdlocker-tiny.cpp **** {
+ 728               		.stabn	68,0,317,.LM111-.LFBB7
+ 729               	.LM111:
+ 730 01f0 E0E2      		ldi r30,lo8(32)
+ 731               	.L57:
+ 732               	.LBB58:
+ 321:sdlocker-tiny.cpp ****         if (pattern & 0x80000000)
+ 733               		.stabn	68,0,321,.LM112-.LFBB7
+ 734               	.LM112:
+ 735 01f2 97FF      		sbrs r25,7
+ 736 01f4 00C0      		rjmp .L54
+ 323:sdlocker-tiny.cpp ****             TURN_LED_ON;
+ 737               		.stabn	68,0,323,.LM113-.LFBB7
+ 738               	.LM113:
+ 739 01f6 C498      		cbi 56-32,4
+ 740 01f8 00C0      		rjmp .L55
+ 741               	.L54:
+ 327:sdlocker-tiny.cpp ****             TURN_LED_OFF;
+ 742               		.stabn	68,0,327,.LM114-.LFBB7
+ 743               	.LM114:
+ 744 01fa C49A      		sbi 56-32,4
+ 745               	.L55:
+ 746               	.LBB59:
+ 747               	.LBB60:
+ 748               		.stabs	"/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h",132,0,0,.Ltext1
+ 749               	.Ltext1:
+   1:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** /* Copyright (c) 2002, Marek Michalkiewicz
+   2:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    Copyright (c) 2004,2005,2007 Joerg Wunsch
+   3:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    Copyright (c) 2007  Florin-Viorel Petrov
+   4:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    All rights reserved.
+   5:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+   6:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    Redistribution and use in source and binary forms, with or without
+   7:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    modification, are permitted provided that the following conditions are met:
+   8:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+   9:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    * Redistributions of source code must retain the above copyright
+  10:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer.
+  11:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  12:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    * Redistributions in binary form must reproduce the above copyright
+  13:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer in
+  14:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****      the documentation and/or other materials provided with the
+  15:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****      distribution.
+  16:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  17:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    * Neither the name of the copyright holders nor the names of
+  18:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****      contributors may be used to endorse or promote products derived
+  19:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****      from this software without specific prior written permission.
+  20:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  21:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  22:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  23:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  24:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  25:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  26:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  27:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  28:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  29:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  30:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  31:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****   POSSIBILITY OF SUCH DAMAGE. */
+  32:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  33:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** /* $Id: delay.h.in 2189 2010-10-13 09:39:34Z aboyapati $ */
+  34:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  35:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #ifndef _UTIL_DELAY_H_
+  36:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #define _UTIL_DELAY_H_ 1
+  37:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  38:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #ifndef __HAS_DELAY_CYCLES
+  39:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #define __HAS_DELAY_CYCLES 1
+  40:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #endif
+  41:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  42:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #include <inttypes.h>
+  43:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #include <util/delay_basic.h>
+  44:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #include <math.h>
+  45:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  46:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** /** \file */
+  47:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** /** \defgroup util_delay <util/delay.h>: Convenience functions for busy-wait delay loops
+  48:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     \code
+  49:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     #define F_CPU 1000000UL  // 1 MHz
+  50:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     //#define F_CPU 14.7456E6
+  51:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     #include <util/delay.h>
+  52:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     \endcode
+  53:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  54:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     \note As an alternative method, it is possible to pass the
+  55:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     F_CPU macro down to the compiler from the Makefile.
+  56:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     Obviously, in that case, no \c \#define statement should be
+  57:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     used.
+  58:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  59:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     The functions in this header file are wrappers around the basic
+  60:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     busy-wait functions from <util/delay_basic.h>.  They are meant as
+  61:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     convenience functions where actual time values can be specified
+  62:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     rather than a number of cycles to wait for.  The idea behind is
+  63:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     that compile-time constant expressions will be eliminated by
+  64:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     compiler optimization so floating-point expressions can be used
+  65:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     to calculate the number of delay cycles needed based on the CPU
+  66:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     frequency passed by the macro F_CPU.
+  67:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  68:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     \note In order for these functions to work as intended, compiler
+  69:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     optimizations <em>must</em> be enabled, and the delay time
+  70:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     <em>must</em> be an expression that is a known constant at
+  71:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     compile-time.  If these requirements are not met, the resulting
+  72:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     delay will be much longer (and basically unpredictable), and
+  73:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     applications that otherwise do not use floating-point calculations
+  74:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     will experience severe code bloat by the floating-point library
+  75:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     routines linked into the application.
+  76:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  77:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     The functions available allow the specification of microsecond, and
+  78:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     millisecond delays directly, using the application-supplied macro
+  79:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     F_CPU as the CPU clock frequency (in Hertz).
+  80:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  81:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** */
+  82:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  83:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #if !defined(__DOXYGEN__)
+  84:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** static inline void _delay_us(double __us) __attribute__((always_inline));
+  85:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** static inline void _delay_ms(double __ms) __attribute__((always_inline));
+  86:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #endif
+  87:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  88:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #ifndef F_CPU
+  89:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** /* prevent compiler error by supplying a default */
+  90:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** # warning "F_CPU not defined for <util/delay.h>"
+  91:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** # define F_CPU 1000000UL
+  92:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #endif
+  93:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  94:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #ifndef __OPTIMIZE__
+  95:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** # warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+  96:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #endif
+  97:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+  98:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** /**
+  99:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    \ingroup util_delay
+ 100:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+ 101:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    Perform a delay of \c __ms milliseconds, using _delay_loop_2().
+ 102:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+ 103:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    The macro F_CPU is supposed to be defined to a
+ 104:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    constant defining the CPU clock frequency (in Hertz).
+ 105:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+ 106:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    The maximal possible delay is 262.14 ms / F_CPU in MHz.
+ 107:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+ 108:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    When the user request delay which exceed the maximum possible one,
+ 109:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    _delay_ms() provides a decreased resolution functionality. In this
+ 110:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    mode _delay_ms() will work with a resolution of 1/10 ms, providing
+ 111:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    delays up to 6.5535 seconds (independent from CPU frequency).  The
+ 112:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    user will not be informed about decreased resolution.
+ 113:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+ 114:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    If the avr-gcc toolchain has __builtin_avr_delay_cycles(unsigned long)
+ 115:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    support, maximal possible delay is 4294967.295 ms/ F_CPU in MHz. For
+ 116:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    values greater than the maximal possible delay, overflows results in
+ 117:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    no delay i.e., 0ms.
+ 118:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+ 119:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    Conversion of __us into clock cycles may not always result in integer.
+ 120:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    By default, the clock cycles rounded up to next integer. This ensures that
+ 121:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    the user gets atleast __us microseconds of delay.
+ 122:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+ 123:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    Alternatively, user can define __DELAY_ROUND_DOWN__ and __DELAY_ROUND_CLOSEST__
+ 124:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    to round down and round to closest integer.
+ 125:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+ 126:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    Note: The new implementation of _delay_ms(double __ms) with 
+ 127:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****     __builtin_avr_delay_cycles(unsigned long) support is not backward compatible. 
+ 128:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    User can define __DELAY_BACKWARD_COMPATIBLE__ to get a backward compatible delay
+ 129:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****    although this will be deprecated in future.
+ 130:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+ 131:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h ****  */
+ 132:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** void
+ 133:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** _delay_ms(double __ms)
+ 134:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** {
+ 135:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 	uint16_t __ticks;
+ 136:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 	double __tmp ; 
+ 137:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && !defined(__DELAY_BACKWARD_COMPATIBLE__)
+ 138:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 	uint32_t __ticks_dc;
+ 139:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 	extern void __builtin_avr_delay_cycles(unsigned long);
+ 140:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 	__tmp = ((F_CPU) / 1e3) * __ms;
+ 141:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+ 142:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 	#if defined(__DELAY_ROUND_DOWN__)
+ 143:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)fabs(__tmp);
+ 144:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+ 145:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 	#elif defined(__DELAY_ROUND_CLOSEST__)
+ 146:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(fabs(__tmp)+0.5);
+ 147:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+ 148:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 	#else
+ 149:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 		//round up by default
+ 150:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+ 151:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 	#endif
+ 152:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 
+ 153:/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h **** 	__builtin_avr_delay_cycles(__ticks_dc);
+ 750               		.stabn	68,0,153,.LM115-.LFBB7
+ 751               	.LM115:
+ 752 01fc 2FEB      		 ldi r18,lo8(55999)
+ 753 01fe 3AED      	    ldi r19,hi8(55999)
+ 754 0200 40E0      	    ldi r20,hlo8(55999)
+ 755 0202 2150      	    1:subi r18,1
+ 756 0204 3040      	    sbci r19,0
+ 757 0206 4040      	    sbci r20,0
+ 758 0208 01F4      	    brne 1b
+ 759 020a 00C0      		rjmp .
+ 760 020c 0000      		nop
+ 761               	.LBE60:
+ 762               	.LBE59:
+ 763               		.stabs	"sdlocker-tiny.cpp",132,0,0,.Ltext2
+ 764               	.Ltext2:
+ 330:sdlocker-tiny.cpp ****         pattern = pattern << 1;
+ 765               		.stabn	68,0,330,.LM116-.LFBB7
+ 766               	.LM116:
+ 767 020e 660F      		lsl r22
+ 768 0210 771F      		rol r23
+ 769 0212 881F      		rol r24
+ 770 0214 991F      		rol r25
+ 331:sdlocker-tiny.cpp ****         if (pattern == 0)
+ 771               		.stabn	68,0,331,.LM117-.LFBB7
+ 772               	.LM117:
+ 773 0216 6115      		cp r22,__zero_reg__
+ 774 0218 7105      		cpc r23,__zero_reg__
+ 775 021a 8105      		cpc r24,__zero_reg__
+ 776 021c 9105      		cpc r25,__zero_reg__
+ 777 021e 01F0      		breq .L53
+ 778 0220 E150      		subi r30,lo8(-(-1))
+ 319:sdlocker-tiny.cpp ****     for (i=0; i<32; i++)
+ 779               		.stabn	68,0,319,.LM118-.LFBB7
+ 780               	.LM118:
+ 781 0222 01F4      		brne .L57
+ 782               	.L53:
+ 783 0224 0895      		ret
+ 784               	.LBE58:
+ 785               		.size	_ZL8BlinkLEDm, .-_ZL8BlinkLEDm
+ 786               	.Lscope7:
+ 787               		.stabs	"",36,0,0,.Lscope7-.LFBB7
+ 788               		.stabd	78,0,0
+ 789               		.stabs	"_ZL9ReadStatev:f(0,2)",36,0,345,_ZL9ReadStatev
+ 790               		.type	_ZL9ReadStatev, @function
+ 791               	_ZL9ReadStatev:
+ 792               		.stabd	46,0,0
+ 346:sdlocker-tiny.cpp **** {
+ 793               		.stabn	68,0,346,.LM119-.LFBB8
+ 794               	.LM119:
+ 795               	.LFBB8:
+ 796 0226 00C0      		rjmp .L64
+ 797               	/* prologue: function */
+ 798               	/* frame size = 0 */
+ 799               	/* stack size = 0 */
+ 800               	.L__stack_usage = 0
+ 801               	.L61:
+ 802               	.LBB61:
+ 353:sdlocker-tiny.cpp ****         BlinkLED(PATTERN_LOADING);
+ 803               		.stabn	68,0,353,.LM120-.LFBB8
+ 804               	.LM120:
+ 805 0228 60E0      		ldi r22,lo8(-1610612736)
+ 806 022a 70E0      		ldi r23,hi8(-1610612736)
+ 807 022c 80E0      		ldi r24,hlo8(-1610612736)
+ 808 022e 90EA      		ldi r25,hhi8(-1610612736)
+ 809 0230 00D0      		rcall _ZL8BlinkLEDm
+ 810               	.L64:
+ 354:sdlocker-tiny.cpp ****         r = SDInit(); // keep trying
+ 811               		.stabn	68,0,354,.LM121-.LFBB8
+ 812               	.LM121:
+ 813 0232 00D0      		rcall _ZL6SDInitv
+ 351:sdlocker-tiny.cpp ****     while (r != SDCARD_OK)
+ 814               		.stabn	68,0,351,.LM122-.LFBB8
+ 815               	.LM122:
+ 816 0234 8823      		tst r24
+ 817 0236 01F4      		brne .L61
+ 818 0238 00C0      		rjmp .L65
+ 819               	.L63:
+ 361:sdlocker-tiny.cpp ****         BlinkLED(PATTERN_READING);
+ 820               		.stabn	68,0,361,.LM123-.LFBB8
+ 821               	.LM123:
+ 822 023a 60E0      		ldi r22,lo8(-1526726656)
+ 823 023c 70E0      		ldi r23,hi8(-1526726656)
+ 824 023e 80E0      		ldi r24,hlo8(-1526726656)
+ 825 0240 95EA      		ldi r25,hhi8(-1526726656)
+ 826 0242 00D0      		rcall _ZL8BlinkLEDm
+ 827               	.L65:
+ 362:sdlocker-tiny.cpp ****         r = ReadCSD(); // keep trying
+ 828               		.stabn	68,0,362,.LM124-.LFBB8
+ 829               	.LM124:
+ 830 0244 00D0      		rcall _ZL7ReadCSDv
+ 359:sdlocker-tiny.cpp ****     while (r != SDCARD_OK)
+ 831               		.stabn	68,0,359,.LM125-.LFBB8
+ 832               	.LM125:
+ 833 0246 8823      		tst r24
+ 834 0248 01F4      		brne .L63
+ 835               	/* epilogue start */
+ 836               	.LBE61:
+ 364:sdlocker-tiny.cpp **** }
+ 837               		.stabn	68,0,364,.LM126-.LFBB8
+ 838               	.LM126:
+ 839 024a 0895      		ret
+ 840               		.size	_ZL9ReadStatev, .-_ZL9ReadStatev
+ 841               	.Lscope8:
+ 842               		.stabs	"",36,0,0,.Lscope8-.LFBB8
+ 843               		.stabd	78,0,0
+ 844               		.stabs	"_ZL9ShowStatev:f(0,2)",36,0,374,_ZL9ShowStatev
+ 845               		.type	_ZL9ShowStatev, @function
+ 846               	_ZL9ShowStatev:
+ 847               		.stabd	46,0,0
+ 375:sdlocker-tiny.cpp **** {
+ 848               		.stabn	68,0,375,.LM127-.LFBB9
+ 849               	.LM127:
+ 850               	.LFBB9:
+ 851               	/* prologue: function */
+ 852               	/* frame size = 0 */
+ 853               	/* stack size = 0 */
+ 854               	.L__stack_usage = 0
+ 855               	.LBB62:
+ 856               	.LBB63:
+ 422:sdlocker-tiny.cpp ****     return (csd[14] & LOCK_BIT_MASK); // check lock bit from CSD
+ 857               		.stabn	68,0,422,.LM128-.LFBB9
+ 858               	.LM128:
+ 859 024c 8091 0000 		lds r24,csd+14
+ 860               	.LBE63:
+ 861               	.LBE62:
+ 376:sdlocker-tiny.cpp ****     if (CardIsLocked())
+ 862               		.stabn	68,0,376,.LM129-.LFBB9
+ 863               	.LM129:
+ 864 0250 84FF      		sbrs r24,4
+ 865 0252 00C0      		rjmp .L67
+ 378:sdlocker-tiny.cpp ****         BlinkLED(PATTERN_LOCKED);
+ 866               		.stabn	68,0,378,.LM130-.LFBB9
+ 867               	.LM130:
+ 868 0254 60E0      		ldi r22,lo8(-2147483648)
+ 869 0256 70E0      		ldi r23,hi8(-2147483648)
+ 870 0258 80E0      		ldi r24,hlo8(-2147483648)
+ 871 025a 90E8      		ldi r25,hhi8(-2147483648)
+ 872 025c 00C0      		rjmp .L69
+ 873               	.L67:
+ 382:sdlocker-tiny.cpp ****         BlinkLED(PATTERN_UNLOCKED);
+ 874               		.stabn	68,0,382,.LM131-.LFBB9
+ 875               	.LM131:
+ 876 025e 60E0      		ldi r22,lo8(0)
+ 877 0260 70E0      		ldi r23,hi8(0)
+ 878 0262 CB01      		movw r24,r22
+ 879               	.L69:
+ 880 0264 00D0      		rcall _ZL8BlinkLEDm
+ 881 0266 0895      		ret
+ 882               		.size	_ZL9ShowStatev, .-_ZL9ShowStatev
+ 883               	.Lscope9:
+ 884               		.stabs	"",36,0,0,.Lscope9-.LFBB9
+ 885               		.stabd	78,0,0
+ 886               		.stabs	"_ZL8ButtonIsh:f(0,26)",36,0,262,_ZL8ButtonIsh
+ 887               		.stabs	"state:P(0,26)",64,0,262,17
+ 888               		.type	_ZL8ButtonIsh, @function
+ 889               	_ZL8ButtonIsh:
+ 890               		.stabd	46,0,0
+ 263:sdlocker-tiny.cpp **** {
+ 891               		.stabn	68,0,263,.LM132-.LFBB10
+ 892               	.LM132:
+ 893               	.LFBB10:
+ 894 0268 0F93      		push r16
+ 895 026a 1F93      		push r17
+ 896               	/* prologue: function */
+ 897               	/* frame size = 0 */
+ 898               	/* stack size = 2 */
+ 899               	.L__stack_usage = 2
+ 900 026c 182F      		mov r17,r24
+ 901               	.LBB64:
+ 267:sdlocker-tiny.cpp ****     if (ReadSwitchOnce() == state)  // if switch state seems to match
+ 902               		.stabn	68,0,267,.LM133-.LFBB10
+ 903               	.LM133:
+ 904 026e 00D0      		rcall _ZL14ReadSwitchOncev
+ 905 0270 082F      		mov r16,r24
+ 906 0272 8117      		cp r24,r17
+ 907 0274 01F4      		brne .L74
+ 908 0276 15E0      		ldi r17,lo8(5)
+ 909               	.L72:
+ 910               	.LBB65:
+ 911               	.LBB66:
+ 912               		.stabs	"/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h",132,0,0,.Ltext3
+ 913               	.Ltext3:
+ 914               		.stabn	68,0,153,.LM134-.LFBB10
+ 915               	.LM134:
+ 916 0278 8FEF      		 ldi r24,lo8(159999)
+ 917 027a 90E7      	    ldi r25,hi8(159999)
+ 918 027c A2E0      	    ldi r26,hlo8(159999)
+ 919 027e 8150      	    1:subi r24,1
+ 920 0280 9040      	    sbci r25,0
+ 921 0282 A040      	    sbci r26,0
+ 922 0284 01F4      	    brne 1b
+ 923 0286 00C0      		rjmp .
+ 924 0288 0000      		nop
+ 925               	.LBE66:
+ 926               	.LBE65:
+ 927               		.stabs	"sdlocker-tiny.cpp",132,0,0,.Ltext4
+ 928               	.Ltext4:
+ 273:sdlocker-tiny.cpp ****             if (ReadSwitchOnce() != state)  // if state doesn't match now
+ 929               		.stabn	68,0,273,.LM135-.LFBB10
+ 930               	.LM135:
+ 931 028a 00D0      		rcall _ZL14ReadSwitchOncev
+ 932 028c 8017      		cp r24,r16
+ 933 028e 01F4      		brne .L74
+ 934 0290 1150      		subi r17,lo8(-(-1))
+ 270:sdlocker-tiny.cpp ****         for (i=0; i<5; i++)         // debounce check every 100ms, 5 times
+ 935               		.stabn	68,0,270,.LM136-.LFBB10
+ 936               	.LM136:
+ 937 0292 01F4      		brne .L72
+ 269:sdlocker-tiny.cpp ****         match = 1;
+ 938               		.stabn	68,0,269,.LM137-.LFBB10
+ 939               	.LM137:
+ 940 0294 81E0      		ldi r24,lo8(1)
+ 941 0296 00C0      		rjmp .L71
+ 942               	.L74:
+ 275:sdlocker-tiny.cpp ****                 match = 0;          // terminate debounce check
+ 943               		.stabn	68,0,275,.LM138-.LFBB10
+ 944               	.LM138:
+ 945 0298 80E0      		ldi r24,lo8(0)
+ 946               	.L71:
+ 947               	/* epilogue start */
+ 948               	.LBE64:
+ 281:sdlocker-tiny.cpp **** }
+ 949               		.stabn	68,0,281,.LM139-.LFBB10
+ 950               	.LM139:
+ 951 029a 1F91      		pop r17
+ 952 029c 0F91      		pop r16
+ 953 029e 0895      		ret
+ 954               		.size	_ZL8ButtonIsh, .-_ZL8ButtonIsh
+ 955               		.stabs	"match:r(0,26)",64,0,264,24
+ 956               		.stabn	192,0,0,.LBB64-.LFBB10
+ 957               		.stabn	224,0,0,.LBE64-.LFBB10
+ 958               	.Lscope10:
+ 959               		.stabs	"",36,0,0,.Lscope10-.LFBB10
+ 960               		.stabd	78,0,0
+ 961               		.stabs	"main:F(0,7)",36,0,209,main
+ 962               	.global	main
+ 963               		.type	main, @function
+ 964               	main:
+ 965               		.stabd	46,0,0
+ 210:sdlocker-tiny.cpp **** {
+ 966               		.stabn	68,0,210,.LM140-.LFBB11
+ 967               	.LM140:
+ 968               	.LFBB11:
+ 969 02a0 EF92      		push r14
+ 970 02a2 FF92      		push r15
+ 971 02a4 0F93      		push r16
+ 972 02a6 1F93      		push r17
+ 973 02a8 CF93      		push r28
+ 974 02aa DF93      		push r29
+ 975               	/* prologue: function */
+ 976               	/* frame size = 0 */
+ 977               	/* stack size = 6 */
+ 978               	.L__stack_usage = 6
+ 979               	.LBB85:
+ 214:sdlocker-tiny.cpp ****     SPI_PORT |= (1<<MOSI_BIT) | (1<<SCK_BIT);                   // drive outputs to the SPI port
+ 980               		.stabn	68,0,214,.LM141-.LFBB11
+ 981               	.LM141:
+ 982 02ac 88B3      		in r24,56-32
+ 983 02ae 8560      		ori r24,lo8(5)
+ 984 02b0 88BB      		out 56-32,r24
+ 215:sdlocker-tiny.cpp ****     SPI_DDR  |= (1<<CS_BIT) | (1<<MOSI_BIT) | (1<<SCK_BIT);     // make the proper lines outputs
+ 985               		.stabn	68,0,215,.LM142-.LFBB11
+ 986               	.LM142:
+ 987 02b2 87B3      		in r24,55-32
+ 988 02b4 8D60      		ori r24,lo8(13)
+ 989 02b6 87BB      		out 55-32,r24
+ 216:sdlocker-tiny.cpp ****     SPI_PORT |= (1<<MISO_BIT);                                  // turn on pull-up for input
+ 990               		.stabn	68,0,216,.LM143-.LFBB11
+ 991               	.LM143:
+ 992 02b8 C19A      		sbi 56-32,1
+ 217:sdlocker-tiny.cpp ****     Deselect();                 // Start with SD card disabled
+ 993               		.stabn	68,0,217,.LM144-.LFBB11
+ 994               	.LM144:
+ 995 02ba 00D0      		rcall _ZL8Deselectv
+ 996 02bc E0E0      		ldi r30,lo8(crctable)
+ 997 02be F0E0      		ldi r31,hi8(crctable)
+ 642:sdlocker-tiny.cpp ****     for (i=0; i<256; i++)
+ 998               		.stabn	68,0,642,.LM145-.LFBB11
+ 999               	.LM145:
+ 1000 02c0 80E0      		ldi r24,lo8(0)
+ 1001 02c2 90E0      		ldi r25,hi8(0)
+ 1002               	.LBB86:
+ 1003               	.LBB87:
+ 644:sdlocker-tiny.cpp ****         crctable[i] = (i & 0x80) ? i ^ CRC7_POLY : i;
+ 1004               		.stabn	68,0,644,.LM146-.LFBB11
+ 1005               	.LM146:
+ 1006 02c4 59E8      		ldi r21,lo8(-119)
+ 1007               	.L81:
+ 1008 02c6 87FF      		sbrs r24,7
+ 1009 02c8 00C0      		rjmp .L77
+ 1010 02ca 482F      		mov r20,r24
+ 1011 02cc 4527      		eor r20,r21
+ 1012 02ce 00C0      		rjmp .L78
+ 1013               	.L77:
+ 1014 02d0 482F      		mov r20,r24
+ 1015               	.L78:
+ 1016 02d2 4083      		st Z,r20
+ 1017 02d4 27E0      		ldi r18,lo8(7)
+ 1018 02d6 30E0      		ldi r19,hi8(7)
+ 1019               	.L80:
+ 647:sdlocker-tiny.cpp ****             crctable[i] <<= 1;
+ 1020               		.stabn	68,0,647,.LM147-.LFBB11
+ 1021               	.LM147:
+ 1022 02d8 440F      		lsl r20
+ 648:sdlocker-tiny.cpp ****             if (crctable[i] & 0x80)
+ 1023               		.stabn	68,0,648,.LM148-.LFBB11
+ 1024               	.LM148:
+ 1025 02da 47FD      		sbrc r20,7
+ 650:sdlocker-tiny.cpp ****                 crctable[i] ^= CRC7_POLY;
+ 1026               		.stabn	68,0,650,.LM149-.LFBB11
+ 1027               	.LM149:
+ 1028 02dc 4527      		eor r20,r21
+ 1029               	.L79:
+ 1030 02de 2150      		subi r18,lo8(-(-1))
+ 1031 02e0 3040      		sbci r19,hi8(-(-1))
+ 645:sdlocker-tiny.cpp ****         for (j=1; j<8; j++)
+ 1032               		.stabn	68,0,645,.LM150-.LFBB11
+ 1033               	.LM150:
+ 1034 02e2 01F4      		brne .L80
+ 1035 02e4 4193      		st Z+,r20
+ 642:sdlocker-tiny.cpp ****     for (i=0; i<256; i++)
+ 1036               		.stabn	68,0,642,.LM151-.LFBB11
+ 1037               	.LM151:
+ 1038 02e6 0196      		adiw r24,1
+ 1039 02e8 21E0      		ldi r18,hi8(256)
+ 1040 02ea 8030      		cpi r24,lo8(256)
+ 1041 02ec 9207      		cpc r25,r18
+ 1042 02ee 01F4      		brne .L81
+ 1043               	.LBE87:
+ 1044               	.LBE86:
+ 221:sdlocker-tiny.cpp ****     LEDSW_AS_LED;               // Set shared LED/switch pin as output (LED)
+ 1045               		.stabn	68,0,221,.LM152-.LFBB11
+ 1046               	.LM152:
+ 1047 02f0 BC9A      		sbi 55-32,4
+ 222:sdlocker-tiny.cpp ****     BlinkLED(PATTERN_BOOTING);  // Test LED on power on
+ 1048               		.stabn	68,0,222,.LM153-.LFBB11
+ 1049               	.LM153:
+ 1050 02f2 60E0      		ldi r22,lo8(-2075459584)
+ 1051 02f4 70E0      		ldi r23,hi8(-2075459584)
+ 1052 02f6 8BE4      		ldi r24,hlo8(-2075459584)
+ 1053 02f8 94E8      		ldi r25,hhi8(-2075459584)
+ 1054 02fa 00D0      		rcall _ZL8BlinkLEDm
+ 223:sdlocker-tiny.cpp ****     ReadState();                // Read the card for the first time
+ 1055               		.stabn	68,0,223,.LM154-.LFBB11
+ 1056               	.LM154:
+ 1057 02fc 00D0      		rcall _ZL9ReadStatev
+ 1058               	.L100:
+ 227:sdlocker-tiny.cpp ****         ShowState();                // Display the current state
+ 1059               		.stabn	68,0,227,.LM155-.LFBB11
+ 1060               	.LM155:
+ 1061 02fe 00D0      		rcall _ZL9ShowStatev
+ 229:sdlocker-tiny.cpp ****         if (ButtonIs(SW_PRESSED))   // If the user presses the button...
+ 1062               		.stabn	68,0,229,.LM156-.LFBB11
+ 1063               	.LM156:
+ 1064 0300 81E0      		ldi r24,lo8(1)
+ 1065 0302 00D0      		rcall _ZL8ButtonIsh
+ 1066 0304 8823      		tst r24
+ 1067 0306 01F0      		breq .L100
+ 1068               	.LBB89:
+ 1069               	.LBB90:
+ 422:sdlocker-tiny.cpp ****     return (csd[14] & LOCK_BIT_MASK); // check lock bit from CSD
+ 1070               		.stabn	68,0,422,.LM157-.LFBB11
+ 1071               	.LM157:
+ 1072 0308 8091 0000 		lds r24,csd+14
+ 1073               	.LBE90:
+ 1074               	.LBE89:
+ 1075               	.LBB91:
+ 1076               	.LBB92:
+ 396:sdlocker-tiny.cpp ****     if (CardIsLocked())     // get ready to unlock it
+ 1077               		.stabn	68,0,396,.LM158-.LFBB11
+ 1078               	.LM158:
+ 1079 030c 40E1      		ldi r20,lo8(16)
+ 1080 030e F42E      		mov r15,r20
+ 1081 0310 F822      		and r15,r24
+ 1082 0312 84FF      		sbrs r24,4
+ 1083 0314 00C0      		rjmp .L83
+ 398:sdlocker-tiny.cpp ****         csd[14] &= ~LOCK_BIT_MASK;   // clear bit 12 of CSD (temp lock)
+ 1084               		.stabn	68,0,398,.LM159-.LFBB11
+ 1085               	.LM159:
+ 1086 0316 8F7E      		andi r24,lo8(-17)
+ 1087 0318 00C0      		rjmp .L101
+ 1088               	.L83:
+ 402:sdlocker-tiny.cpp ****       csd[14] |= LOCK_BIT_MASK;      // set bit 12 of CSD (temp lock)
+ 1089               		.stabn	68,0,402,.LM160-.LFBB11
+ 1090               	.LM160:
+ 1091 031a 8061      		ori r24,lo8(16)
+ 1092               	.L101:
+ 1093 031c 8093 0000 		sts csd+14,r24
+ 1094               	.LBB93:
+ 1095               	.LBB94:
+ 603:sdlocker-tiny.cpp ****     response = SD_send_command(SD_PROGRAM_CSD, 0);
+ 1096               		.stabn	68,0,603,.LM161-.LFBB11
+ 1097               	.LM161:
+ 1098 0320 8BE5      		ldi r24,lo8(91)
+ 1099 0322 40E0      		ldi r20,lo8(0)
+ 1100 0324 50E0      		ldi r21,hi8(0)
+ 1101 0326 BA01      		movw r22,r20
+ 1102 0328 00D0      		rcall _ZL15SD_send_commandhm
+ 604:sdlocker-tiny.cpp ****     if (response != 0)
+ 1103               		.stabn	68,0,604,.LM162-.LFBB11
+ 1104               	.LM162:
+ 1105 032a 8823      		tst r24
+ 1106 032c 01F4      		brne .L85
+ 609:sdlocker-tiny.cpp ****     Xchg(0xfe); // send data token marking start of data block
+ 1107               		.stabn	68,0,609,.LM163-.LFBB11
+ 1108               	.LM163:
+ 1109 032e 8EEF      		ldi r24,lo8(-2)
+ 1110 0330 00D0      		rcall _ZL4Xchgh
+ 1111 0332 C0E0      		ldi r28,lo8(csd)
+ 1112 0334 D0E0      		ldi r29,hi8(csd)
+ 1113               	.LBE94:
+ 1114               	.LBE93:
+ 1115               	.LBE92:
+ 1116               	.LBE91:
+ 1117               	.LBB100:
+ 1118               	.LBB88:
+ 611:sdlocker-tiny.cpp ****     tcrc = 0;
+ 1119               		.stabn	68,0,611,.LM164-.LFBB11
+ 1120               	.LM164:
+ 1121 0336 EE24      		clr r14
+ 1122               	.L86:
+ 1123               	.LBE88:
+ 1124               	.LBE100:
+ 1125               	.LBB101:
+ 1126               	.LBB99:
+ 1127               	.LBB98:
+ 1128               	.LBB97:
+ 209:sdlocker-tiny.cpp **** int main(void)
+ 1129               		.stabn	68,0,209,.LM165-.LFBB11
+ 1130               	.LM165:
+ 1131 0338 8E01      		movw r16,r28
+ 614:sdlocker-tiny.cpp ****         Xchg(csd[i]);           // send each byte via SPI
+ 1132               		.stabn	68,0,614,.LM166-.LFBB11
+ 1133               	.LM166:
+ 1134 033a 8991      		ld r24,Y+
+ 1135 033c 00D0      		rcall _ZL4Xchgh
+ 1136               	.LBB95:
+ 1137               	.LBB96:
+ 660:sdlocker-tiny.cpp ****     return crctable[(crc << 1) ^ b];
+ 1138               		.stabn	68,0,660,.LM167-.LFBB11
+ 1139               	.LM167:
+ 1140 033e EE2D      		mov r30,r14
+ 1141 0340 F0E0      		ldi r31,lo8(0)
+ 1142 0342 EE0F      		lsl r30
+ 1143 0344 FF1F      		rol r31
+ 1144 0346 D801      		movw r26,r16
+ 1145 0348 8C91      		ld r24,X
+ 1146 034a 90E0      		ldi r25,lo8(0)
+ 1147 034c E827      		eor r30,r24
+ 1148 034e F927      		eor r31,r25
+ 1149 0350 E050      		subi r30,lo8(-(crctable))
+ 1150 0352 F040      		sbci r31,hi8(-(crctable))
+ 1151 0354 E080      		ld r14,Z
+ 1152               	.LBE96:
+ 1153               	.LBE95:
+ 612:sdlocker-tiny.cpp ****     for (i=0; i<15; i++)    // for all 15 data bytes in CSD...
+ 1154               		.stabn	68,0,612,.LM168-.LFBB11
+ 1155               	.LM168:
+ 1156 0356 B0E0      		ldi r27,hi8(csd+15)
+ 1157 0358 C030      		cpi r28,lo8(csd+15)
+ 1158 035a DB07      		cpc r29,r27
+ 1159 035c 01F4      		brne .L86
+ 617:sdlocker-tiny.cpp ****     Xchg((tcrc<<1) + 1);        // format the CRC7 value and send it
+ 1160               		.stabn	68,0,617,.LM169-.LFBB11
+ 1161               	.LM169:
+ 1162 035e 8E2D      		mov r24,r14
+ 1163 0360 880F      		lsl r24
+ 1164 0362 8F5F      		subi r24,lo8(-(1))
+ 1165 0364 00D0      		rcall _ZL4Xchgh
+ 619:sdlocker-tiny.cpp ****     Xchg(0xff);         // ignore dummy checksum
+ 1166               		.stabn	68,0,619,.LM170-.LFBB11
+ 1167               	.LM170:
+ 1168 0366 8FEF      		ldi r24,lo8(-1)
+ 1169 0368 00D0      		rcall _ZL4Xchgh
+ 620:sdlocker-tiny.cpp ****     Xchg(0xff);         // ignore dummy checksum
+ 1170               		.stabn	68,0,620,.LM171-.LFBB11
+ 1171               	.LM171:
+ 1172 036a 8FEF      		ldi r24,lo8(-1)
+ 1173 036c 00D0      		rcall _ZL4Xchgh
+ 622:sdlocker-tiny.cpp ****     i = 0xffff;         // max timeout
+ 1174               		.stabn	68,0,622,.LM172-.LFBB11
+ 1175               	.LM172:
+ 1176 036e CFEF      		ldi r28,lo8(-1)
+ 1177 0370 DFEF      		ldi r29,hi8(-1)
+ 1178               	.L88:
+ 623:sdlocker-tiny.cpp ****     while (!Xchg(0xff) && (--i));   // wait until we are not busy
+ 1179               		.stabn	68,0,623,.LM173-.LFBB11
+ 1180               	.LM173:
+ 1181 0372 8FEF      		ldi r24,lo8(-1)
+ 1182 0374 00D0      		rcall _ZL4Xchgh
+ 1183 0376 8823      		tst r24
+ 1184 0378 01F4      		brne .L87
+ 1185 037a 2197      		sbiw r28,1
+ 1186 037c 01F4      		brne .L88
+ 1187 037e 00C0      		rjmp .L85
+ 1188               	.L87:
+ 625:sdlocker-tiny.cpp ****     if (i)
+ 1189               		.stabn	68,0,625,.LM174-.LFBB11
+ 1190               	.LM174:
+ 1191 0380 2097      		sbiw r28,0
+ 1192 0382 01F4      		brne .L89
+ 1193               	.L85:
+ 1194               	.LBE97:
+ 1195               	.LBE98:
+ 408:sdlocker-tiny.cpp ****         BlinkLED(PATTERN_WERROR);   // ...notify this error
+ 1196               		.stabn	68,0,408,.LM175-.LFBB11
+ 1197               	.LM175:
+ 1198 0384 6FE0      		ldi r22,lo8(983055)
+ 1199 0386 70E0      		ldi r23,hi8(983055)
+ 1200 0388 CB01      		movw r24,r22
+ 1201 038a 00D0      		rcall _ZL8BlinkLEDm
+ 409:sdlocker-tiny.cpp ****         BlinkLED(PATTERN_WERROR);
+ 1202               		.stabn	68,0,409,.LM176-.LFBB11
+ 1203               	.LM176:
+ 1204 038c 6FE0      		ldi r22,lo8(983055)
+ 1205 038e 70E0      		ldi r23,hi8(983055)
+ 1206 0390 CB01      		movw r24,r22
+ 1207 0392 00D0      		rcall _ZL8BlinkLEDm
+ 410:sdlocker-tiny.cpp ****         BlinkLED(PATTERN_WERROR);
+ 1208               		.stabn	68,0,410,.LM177-.LFBB11
+ 1209               	.LM177:
+ 1210 0394 6FE0      		ldi r22,lo8(983055)
+ 1211 0396 70E0      		ldi r23,hi8(983055)
+ 1212 0398 CB01      		movw r24,r22
+ 1213 039a 00D0      		rcall _ZL8BlinkLEDm
+ 1214               	.L89:
+ 1215               	.LBE99:
+ 1216               	.LBE101:
+ 233:sdlocker-tiny.cpp ****             ReadState();                    // and read again to verify the change
+ 1217               		.stabn	68,0,233,.LM178-.LFBB11
+ 1218               	.LM178:
+ 1219 039c 00D0      		rcall _ZL9ReadStatev
+ 1220               	.LBB102:
+ 1221               	.LBB103:
+ 422:sdlocker-tiny.cpp ****     return (csd[14] & LOCK_BIT_MASK); // check lock bit from CSD
+ 1222               		.stabn	68,0,422,.LM179-.LFBB11
+ 1223               	.LM179:
+ 1224 039e 8091 0000 		lds r24,csd+14
+ 1225 03a2 8071      		andi r24,lo8(16)
+ 1226               	.LBE103:
+ 1227               	.LBE102:
+ 235:sdlocker-tiny.cpp ****             if (CardIsLocked() == prevState)    // if state did not change as expected
+ 1228               		.stabn	68,0,235,.LM180-.LFBB11
+ 1229               	.LM180:
+ 1230 03a4 8F15      		cp r24,r15
+ 1231 03a6 01F4      		brne .L90
+ 237:sdlocker-tiny.cpp ****                 BlinkLED(PATTERN_FAILED);   // blink error a few times
+ 1232               		.stabn	68,0,237,.LM181-.LFBB11
+ 1233               	.LM181:
+ 1234 03a8 63E0      		ldi r22,lo8(196611)
+ 1235 03aa 70E0      		ldi r23,hi8(196611)
+ 1236 03ac CB01      		movw r24,r22
+ 1237 03ae 00D0      		rcall _ZL8BlinkLEDm
+ 238:sdlocker-tiny.cpp ****                 BlinkLED(PATTERN_FAILED);
+ 1238               		.stabn	68,0,238,.LM182-.LFBB11
+ 1239               	.LM182:
+ 1240 03b0 63E0      		ldi r22,lo8(196611)
+ 1241 03b2 70E0      		ldi r23,hi8(196611)
+ 1242 03b4 CB01      		movw r24,r22
+ 1243 03b6 00D0      		rcall _ZL8BlinkLEDm
+ 239:sdlocker-tiny.cpp ****                 BlinkLED(PATTERN_FAILED);
+ 1244               		.stabn	68,0,239,.LM183-.LFBB11
+ 1245               	.LM183:
+ 1246 03b8 63E0      		ldi r22,lo8(196611)
+ 1247 03ba 70E0      		ldi r23,hi8(196611)
+ 1248 03bc CB01      		movw r24,r22
+ 1249 03be 00D0      		rcall _ZL8BlinkLEDm
+ 1250               	.L90:
+ 242:sdlocker-tiny.cpp ****             ShowState();                    // Display the updated state, and...
+ 1251               		.stabn	68,0,242,.LM184-.LFBB11
+ 1252               	.LM184:
+ 1253 03c0 00D0      		rcall _ZL9ShowStatev
+ 244:sdlocker-tiny.cpp ****             while (!ButtonIs(SW_RELEASED))  // ...wait until the button is released
+ 1254               		.stabn	68,0,244,.LM185-.LFBB11
+ 1255               	.LM185:
+ 1256 03c2 00C0      		rjmp .L91
+ 1257               	.L92:
+ 1258               	.LBB104:
+ 1259               	.LBB105:
+ 1260               		.stabs	"/usr/lib/gcc/avr/4.5.3/../../../avr/include/util/delay.h",132,0,0,.Ltext5
+ 1261               	.Ltext5:
+ 1262               		.stabn	68,0,153,.LM186-.LFBB11
+ 1263               	.LM186:
+ 1264 03c4 8FE4      		 ldi r24,lo8(-15537)
+ 1265 03c6 93EC      	    ldi r25,hi8(-15537)
+ 1266 03c8 0197      	    1:sbiw r24,1
+ 1267 03ca 01F4      	    brne 1b
+ 1268 03cc 00C0      		rjmp .
+ 1269 03ce 0000      		nop
+ 1270               	.L91:
+ 1271               	.LBE105:
+ 1272               	.LBE104:
+ 1273               		.stabs	"sdlocker-tiny.cpp",132,0,0,.Ltext6
+ 1274               	.Ltext6:
+ 244:sdlocker-tiny.cpp ****             while (!ButtonIs(SW_RELEASED))  // ...wait until the button is released
+ 1275               		.stabn	68,0,244,.LM187-.LFBB11
+ 1276               	.LM187:
+ 1277 03d0 80E0      		ldi r24,lo8(0)
+ 1278 03d2 00D0      		rcall _ZL8ButtonIsh
+ 1279 03d4 8823      		tst r24
+ 1280 03d6 01F0      		breq .L92
+ 1281 03d8 00C0      		rjmp .L100
+ 1282               	.LBE85:
+ 1283               		.size	main, .-main
+ 1284               		.stabs	"prevState:r(0,26)",64,0,211,15
+ 1285               		.stabn	192,0,0,.LBB85-.LFBB11
+ 1286               		.stabs	"i:r(0,28)",64,0,639,24
+ 1287               		.stabn	192,0,0,.LBB87-.LFBB11
+ 1288               		.stabn	224,0,0,.LBE87-.LFBB11
+ 1289               		.stabs	"i:r(0,28)",64,0,639,24
+ 1290               		.stabn	192,0,0,.LBB88-.LFBB11
+ 1291               		.stabn	224,0,0,.LBE88-.LFBB11
+ 1292               		.stabs	"tcrc:r(0,26)",64,0,600,14
+ 1293               		.stabs	"i:r(0,28)",64,0,601,28
+ 1294               		.stabn	192,0,0,.LBB94-.LFBB11
+ 1295               		.stabn	224,0,0,.LBE94-.LFBB11
+ 1296               		.stabs	"tcrc:r(0,26)",64,0,600,14
+ 1297               		.stabs	"i:r(0,28)",64,0,601,28
+ 1298               		.stabn	192,0,0,.LBB97-.LFBB11
+ 1299               		.stabn	224,0,0,.LBE97-.LFBB11
+ 1300               		.stabn	224,0,0,.LBE85-.LFBB11
+ 1301               	.Lscope11:
+ 1302               		.stabs	"",36,0,0,.Lscope11-.LFBB11
+ 1303               		.stabd	78,0,0
+ 1304               	.global	LEDPattern
+ 1305               	.global	LEDPattern
+ 1306               		.section .bss
+ 1307               		.type	LEDPattern, @object
+ 1308               		.size	LEDPattern, 4
+ 1309               	LEDPattern:
+ 1310 0000 0000 0000 		.skip 4,0
+ 1311               	.global	sdtype
+ 1312               	.global	sdtype
+ 1313               		.type	sdtype, @object
+ 1314               		.size	sdtype, 1
+ 1315               	sdtype:
+ 1316 0004 00        		.skip 1,0
+ 1317               	.global	csd
+ 1318               	.global	csd
+ 1319               		.type	csd, @object
+ 1320               		.size	csd, 16
+ 1321               	csd:
+ 1322 0005 0000 0000 		.skip 16,0
+ 1322      0000 0000 
+ 1322      0000 0000 
+ 1322      0000 0000 
+ 1323               	.global	cid
+ 1324               	.global	cid
+ 1325               		.type	cid, @object
+ 1326               		.size	cid, 16
+ 1327               	cid:
+ 1328 0015 0000 0000 		.skip 16,0
+ 1328      0000 0000 
+ 1328      0000 0000 
+ 1328      0000 0000 
+ 1329               	.global	crctable
+ 1330               	.global	crctable
+ 1331               		.type	crctable, @object
+ 1332               		.size	crctable, 256
+ 1333               	crctable:
+ 1334 0025 0000 0000 		.skip 256,0
+ 1334      0000 0000 
+ 1334      0000 0000 
+ 1334      0000 0000 
+ 1334      0000 0000 
+ 1335               		.stabs	"LEDPattern:G(0,30)",32,0,176,0
+ 1336               		.stabs	"sdtype:G(0,26)",32,0,177,0
+ 1337               		.stabs	"csd:G(0,93)=ar(0,94)=r(0,94);0;0177777;;0;15;(0,26)",32,0,178,0
+ 1338               		.stabs	"cid:G(0,93)",32,0,179,0
+ 1339               		.stabs	"crctable:G(0,95)=ar(0,94);0;255;(0,26)",32,0,180,0
+ 1340               		.text
+ 1341               		.stabs	"",100,0,0,.Letext0
+ 1342               	.Letext0:
+ 1343               	.global __do_clear_bss
+DEFINED SYMBOLS
+                            *ABS*:00000000 sdlocker-tiny.cpp
+     /tmp/ccjT1PMp.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccjT1PMp.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccjT1PMp.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccjT1PMp.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccjT1PMp.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccjT1PMp.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccjT1PMp.s:94     .text:00000000 _ZL14ReadSwitchOncev
+     /tmp/ccjT1PMp.s:1321   .bss:00000005 csd
+     /tmp/ccjT1PMp.s:149    .text:00000018 _ZL8Deselectv
+     /tmp/ccjT1PMp.s:172    .text:0000001c _ZL4Xchgh
+     /tmp/ccjT1PMp.s:237    .text:0000003e _ZL15SD_send_commandhm
+     /tmp/ccjT1PMp.s:420    .text:000000e6 _ZL6SDInitv
+     /tmp/ccjT1PMp.s:1315   .bss:00000004 sdtype
+     /tmp/ccjT1PMp.s:606    .text:0000019c _ZL7ReadCSDv
+     /tmp/ccjT1PMp.s:719    .text:000001f0 _ZL8BlinkLEDm
+     /tmp/ccjT1PMp.s:791    .text:00000226 _ZL9ReadStatev
+     /tmp/ccjT1PMp.s:846    .text:0000024c _ZL9ShowStatev
+     /tmp/ccjT1PMp.s:889    .text:00000268 _ZL8ButtonIsh
+     /tmp/ccjT1PMp.s:964    .text:000002a0 main
+     /tmp/ccjT1PMp.s:1333   .bss:00000025 crctable
+     /tmp/ccjT1PMp.s:1309   .bss:00000000 LEDPattern
+     /tmp/ccjT1PMp.s:1327   .bss:00000015 cid
+
+UNDEFINED SYMBOLS
+__do_clear_bss

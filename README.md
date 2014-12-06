@@ -1,7 +1,7 @@
 sdlocker-tiny
 =============
 **Attiny85**-based device to **enable** and **disable write-protection** on **any SD card**.
-[![sdlocker-tiny built inside the shell of an old PlayStation Memory Card](https://raw2.github.com/Nephiel/sdlocker-tiny/gh-pages/img/sdlocker-tiny-sm.jpg "sdlocker-tiny built inside the shell of an old PlayStation Memory Card")](https://raw2.github.com/Nephiel/sdlocker-tiny/gh-pages/img/sdlocker-tiny.jpg)  
+[![sdlocker-tiny built inside the shell of an old PlayStation Memory Card](https://raw.githubusercontent.com/Nephiel/sdlocker-tiny/gh-pages/img/sdlocker-tiny-sm.jpg "sdlocker-tiny built inside the shell of an old PlayStation Memory Card")](https://raw.githubusercontent.com/Nephiel/sdlocker-tiny/gh-pages/img/sdlocker-tiny.jpg)  
 Based on **sdlocker** by ***Karl Lunt***, see http://www.seanet.com/~karllunt/sdlocker.html
 
 
